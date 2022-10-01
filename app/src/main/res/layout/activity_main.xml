@@ -14,10 +14,19 @@
         android:layout_height="729dp"
         android:background="#FCF6EA"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="78dp">
 
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="70dp">
-
+        <ImageButton
+            android:id="@+id/imgbt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="#00FFFFFF"
+            android:onClick="moveButton"
+            app:srcCompat="@drawable/plus" />
     </LinearLayout>
 
     <TextView
@@ -35,4 +44,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/imgbt"
+        android:layout_width="42dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="#00FFFFFF"
+        android:backgroundTint="#00FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
