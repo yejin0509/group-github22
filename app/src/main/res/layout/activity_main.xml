@@ -11,152 +11,107 @@
     cardview:ignore="MissingClass">
     <!--    cardview:cardBackgroundColor="#F6C74B"-->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="415dp"
-                android:layout_height="731dp"
-                android:background="#F6C74B"
-                cardview:cardBackgroundColor="#F6C74B"
-                cardview:ignore="MissingConstraints" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="0dp"
-                android:layout_height="633dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/back_back"
-                cardview:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="395dp"
+                    android:layout_height="855dp"
+                    android:background="#F6C74B"
+                    cardview:cardBackgroundColor="#F6C74B"
+                    cardview:ignore="MissingConstraints" />
 
-            <android.widget.Button
-                android:id="@+id/문제결과"
-                android:layout_width="300dp"
-                android:layout_height="130dp"
-                android:layout_marginBottom="44dp"
-                android:background="@drawable/button_back"
-                android:text="@string/third"
-                android:textColor="#472D1C"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:cardElevation="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                cardview:ignore="MissingConstraints" />
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="400dp"
+                    android:layout_height="742dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/back_back"
+                    cardview:ignore="MissingConstraints" />
 
-            <android.widget.Button
-                android:id="@+id/학습및문제"
-                android:layout_width="300dp"
-                android:layout_height="130dp"
-                android:layout_marginBottom="52dp"
-                android:background="@drawable/button_back"
-                android:text="@string/second"
-                android:textColor="#472D1C"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/문제결과"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                cardview:ignore="MissingConstraints" />
+                <android.widget.Button
+                    android:id="@+id/학습및문제"
+                    android:layout_width="300dp"
+                    android:layout_height="130dp"
+                    android:layout_marginBottom="76dp"
+                    android:background="@drawable/button_back"
+                    android:drawableBottom="@drawable/btn_2"
+                    android:padding="10dp"
+                    android:textColor="#472D1C"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/문제결과"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView1"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <android.widget.Button
-                android:id="@+id/등록"
-                android:layout_width="300dp"
-                android:layout_height="130dp"
-                android:layout_marginBottom="52dp"
-                android:background="@drawable/button_back"
-                android:text="@string/first"
-                android:textColor="#472D1C"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/학습및문제"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
-                cardview:ignore="MissingConstraints" />
+                <android.widget.Button
+                    android:id="@+id/문제결과"
+                    android:layout_width="300dp"
+                    android:layout_height="130dp"
+                    android:layout_marginBottom="52dp"
+                    android:background="@drawable/button_back"
+                    android:drawableBottom="@drawable/btn_3"
+                    android:padding="10dp"
+                    android:textColor="#472D1C"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:cardElevation="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    cardview:ignore="MissingConstraints" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumhand"
-                android:text="@string/title"
-                android:textColor="#472D1C"
-                android:textSize="90sp"
-                app:layout_constraintBottom_toTopOf="@+id/등록"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView"
-                cardview:ignore="MissingConstraints" />
+                <android.widget.Button
+                    android:id="@+id/등록"
+                    android:layout_width="300dp"
+                    android:layout_height="130dp"
+                    android:layout_marginBottom="76dp"
+                    android:background="@drawable/button_back"
+                    android:drawableBottom="@drawable/btn_1"
+                    android:padding="10dp"
+                    android:textColor="#472D1C"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/학습및문제"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumhand"
+                    android:text="@string/title"
+                    android:textColor="#472D1C"
+                    android:textSize="90sp"
+                    app:layout_constraintBottom_toTopOf="@+id/등록"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.497"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    app:layout_constraintVertical_bias="0.8"
+                    cardview:ignore="MissingConstraints" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="735dp"
-        android:background="#00FFFFFF"
-        android:backgroundTint="#00FFFFFF">
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="212dp"
-            android:gravity="center"
-            android:text="@string/aac1"
-            android:textColor="#472D1C"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            cardview:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginTop="128dp"
-            android:gravity="center"
-            android:text="@string/aac2"
-            android:textColor="#472D1C"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView1"
-            app:layout_constraintVertical_bias="0.0"
-            cardview:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="142dp"
-            android:layout_height="52dp"
-            android:layout_marginBottom="96dp"
-            android:gravity="center"
-            android:text="@string/aac3"
-            android:textColor="#472D1C"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            cardview:ignore="MissingConstraints" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
