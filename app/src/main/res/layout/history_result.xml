@@ -16,10 +16,10 @@
         <!--       뒤로가기 화살표 버튼-->
         <Button
             android:id="@+id/arrowbutton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginLeft="3dp"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/arrow"
             />
         <!--상단-->
@@ -27,11 +27,11 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="118dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="122dp"
+            android:layout_marginTop="22dp"
             android:text="결과"
-            android:textSize="30sp" />
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
