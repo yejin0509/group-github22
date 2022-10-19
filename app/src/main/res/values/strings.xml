@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">firststep</string>
+    <string name="second">\n학습 및 문제풀기</string>
+    <string name="first">\n등록하기</string>
+    <string name="third">\n살펴보기</string>
+    <string name="aac1">AAC교육</string>
+    <string name="aac2">AAC교육</string>
+    <string name="aac3">문제결과</string>
+    <string name="title">첫걸음</string>
+</resources>
