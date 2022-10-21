@@ -15,10 +15,10 @@ tools:context=".MainActivity">
     <!--        화살표 버튼-->
     <Button
         android:id="@+id/button2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginLeft="3dp"
+        android:layout_width="30dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/arrow"
         />
     <!--문제 분야-->
@@ -26,11 +26,11 @@ tools:context=".MainActivity">
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="118dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="122dp"
+        android:layout_marginTop="22dp"
         android:text="감정"
-        android:textSize="30sp" />
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 </LinearLayout>
 
 <!-- 문제 번호   -->
