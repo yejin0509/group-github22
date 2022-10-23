@@ -8,19 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-public class Class_list extends AppCompatActivity {
+public class Class_question_list extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.class_list);
+        setContentView(R.layout.class_question_list);
 
         Button Button1 = (Button) findViewById(R.id.button4);
         Button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Activity_study_1.class);
+                Intent intent = new Intent(getApplicationContext(), Question.class);
                 startActivity(intent);
             }
         });
@@ -30,7 +30,17 @@ public class Class_list extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Activity_study_1.class);
+                Intent intent = new Intent(getApplicationContext(), Question.class);
+                startActivity(intent);
+            }
+        });
+
+        Button Button3 = (Button) findViewById(R.id.button3);
+        Button2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Question.class);
                 startActivity(intent);
             }
         });
