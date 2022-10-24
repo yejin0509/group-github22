@@ -12,8 +12,7 @@ public class SuppormerClass {
     private String answer;
     private String writeDate;
 
-    public SuppormerClass(int id, String categoryN, Bitmap image, String answer, String writeDate) {
-        this.id = id;
+    public SuppormerClass(String categoryN, Bitmap image, String answer, String writeDate) {
         CategoryN = categoryN;
         this.image = image;
         this.answer = answer;
