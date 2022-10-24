@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#f6c74b"
     android:backgroundTint="#F6C74B"
-    tools:context=".Class_list">
+    tools:context=".Class_question_list">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -66,7 +66,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="문제 학습"
+        android:text="문제 풀이"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"

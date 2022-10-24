@@ -42,6 +42,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Class_question_list"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Score"
             android:exported="false">
             <meta-data
