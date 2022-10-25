@@ -24,5 +24,14 @@ public class QuestionChange extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView imageView3 = findViewById(R.id.imageView3);
+        imageView3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), Question_input.class);
+                startActivity(intent);
+            }
+        });
     }
 }

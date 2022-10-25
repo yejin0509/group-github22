@@ -2,15 +2,18 @@ package com.example.firststep;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
-import android.widget.TimePicker;
+import android.graphics.BitmapFactory;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBSuppormer extends SQLiteOpenHelper {
     Context context;
@@ -36,38 +39,24 @@ public class DBSuppormer extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //insert table
-    public void Insert(SuppormerClass sc){
-        try {
-            SQLiteDatabase mDB=this.getWritableDatabase();
-            Bitmap imageToStoreBitmap=sc.getImage();
+    //insert table 데이터 입력
+    public void Insert(String categoryN, Bitmap image, String answer, String writeDate){
+        SQLiteDatabase mDB = this.getWritableDatabase();
+        Bitmap imageToStoreBitmap=image;
 
-            //이미지를 저장하려면 byte로 변환해야함.
-            mByteArrayOutputStream=new ByteArrayOutputStream();
-            imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
-            imageInBytes=mByteArrayOutputStream.toByteArray();
+        //이미지를 저장하려면 byte로 변환해야함.
+        mByteArrayOutputStream=new ByteArrayOutputStream();
+        imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
+        imageInBytes=mByteArrayOutputStream.toByteArray();
 
-            //테이블 각 열에 정보 저장하기위해 cv 사용한 것
-            ContentValues cv=new ContentValues();
-            cv.put("categoryN",sc.getCategoryN());
-            cv.put("image",imageInBytes);
-            cv.put("answer",sc.getAnswer());
-            cv.put("writeDate",sc.getWriteDate());
-            //데이터 베이스 Qtable에 cv 넘기기
-            long checkIfQueryRuns=mDB.insert("Qtable",null,cv);
+        ContentValues cv = new ContentValues();
+        cv.put("categoryN", categoryN);
+        cv.put("image",imageInBytes);
+        cv.put("answer", answer);
+        cv.put("writeDate", writeDate);
+        long id = mDB.insert("Qtable",null,cv);
 
-            //insert하는 쿼리문이 정상적인지 확인
-            if(checkIfQueryRuns!=0){
-                Toast.makeText(context,"Data added into Qtable",Toast.LENGTH_SHORT).show();
-                mDB.close();
-            }
-            else{
-                Toast.makeText(context,"fails to add Data",Toast.LENGTH_SHORT).show();
-            }
-        }
-        catch (Exception e){
-            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+        mDB.close();
     }
 
 
@@ -111,6 +100,29 @@ public class DBSuppormer extends SQLiteOpenHelper {
         //문제 작성 날짜만 받아서 조건걸어 삭제하기. 이미지 byte 변환없어서 바로 쿼리문 씀.
         SQLiteDatabase mDB=getWritableDatabase();
         mDB.execSQL("DELETE FROM Qtable WHERE writeDate="+_beforeDate+";");
+    }
+
+    public List getResult(){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE id = '1' ", null);
+        while(cursor.moveToNext()){
+
+            byte[] image = cursor.getBlob(2);
+            Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+            mList.add(0,cursor.getInt(0));
+            mList.add(1,cursor.getString(1));
+            mList.add(2,bm);
+            mList.add(3,cursor.getString(3));
+            mList.add(4,cursor.getString(4));
+
+
+
+        }
+        return mList;
     }
 
 }
