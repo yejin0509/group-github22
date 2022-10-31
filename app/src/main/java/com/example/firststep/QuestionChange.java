@@ -1,18 +1,32 @@
 package com.example.firststep;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionChange extends AppCompatActivity {
+
+    DBSuppormer dbSuppormer;
+    RecyclerView recyclerView;
+    ArrayList<String> categoryList;
+    QuestionChangeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_change);
+
+        dbSuppormer = new DBSuppormer(QuestionChange.this);
 
         //뒤로가기 버튼
         ImageView backButton = (ImageView) findViewById(R.id.imageView2);
@@ -33,5 +47,30 @@ public class QuestionChange extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        recyclerList();
+
     }
+
+    // 리사이클러뷰, 카드뷰 사용
+    public void recyclerList(){
+        // recycler view
+        recyclerView = findViewById(R.id.recyclerView);
+        // List item 생성
+        categoryList = new ArrayList<String>();
+
+        List list = dbSuppormer.getResultCategoryN();
+
+        for(int i = 0; i<list.size(); i++){
+            categoryList.add(String.valueOf(list.get(i)));
+        }
+
+
+
+        // adapter 추가 및 layout manager 추가
+        adapter = new QuestionChangeAdapter(this, categoryList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+    }
+
 }

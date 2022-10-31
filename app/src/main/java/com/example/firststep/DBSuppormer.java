@@ -7,6 +7,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -60,46 +64,28 @@ public class DBSuppormer extends SQLiteOpenHelper {
     }
 
 
-    public void Update(String _categoryN, Bitmap _image, String _answer, String _writeDate,String _beforeDate){
+    public void Update(String _answer, String _writeDate, String _beforeDate){
         //beforeDate는 문제 처음 생성시 같이 들어간 날짜고 writeDate는 수정하려는 시기 날짜
-        try {
-            SQLiteDatabase mDB=this.getWritableDatabase();
-            Bitmap imageToStoreBitmap=_image;
+        SQLiteDatabase mDB=this.getWritableDatabase();
 
-            //이미지를 저장하려면 byte로 변환해야함.
-            mByteArrayOutputStream=new ByteArrayOutputStream();
-            imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
-            imageInBytes=mByteArrayOutputStream.toByteArray();
+        //테이블 각 열에 정보 저장하기위해 cv 사용한 것
+        ContentValues cv=new ContentValues();
+        cv.put("answer",_answer);
+        cv.put("writeDate",_writeDate);
 
-            //테이블 각 열에 정보 저장하기위해 cv 사용한 것
-            ContentValues cv=new ContentValues();
-            cv.put("categoryN",_categoryN);
-            cv.put("image",imageInBytes);
-            cv.put("answer",_answer);
-            cv.put("writeDate",_writeDate);
+        //데이터 베이스 Qtable에 cv 넘기기
+        mDB.update("Qtable",cv, "writeDate=?",new String[]{_beforeDate});
 
-            //데이터 베이스 Qtable에 cv 넘기기
-            long checkIfQueryRuns=mDB.update("Qtable",cv, "writeDate=?",new String[]{_beforeDate});
-
-            //update 쿼리문이 정상적인지 확인
-            if(checkIfQueryRuns!=0){
-                Toast.makeText(context,"Data update success",Toast.LENGTH_SHORT).show();
-                mDB.close();
-            }
-            else{
-                Toast.makeText(context,"fails to update",Toast.LENGTH_SHORT).show();
-            }
-        }
-        catch (Exception e){
-            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
+        mDB.close();
     }
 
 
     public void Delete(String _beforeDate){
         //문제 작성 날짜만 받아서 조건걸어 삭제하기. 이미지 byte 변환없어서 바로 쿼리문 씀.
         SQLiteDatabase mDB=getWritableDatabase();
-        mDB.execSQL("DELETE FROM Qtable WHERE writeDate="+_beforeDate+";");
+        mDB.execSQL("DELETE FROM Qtable WHERE writeDate='"+_beforeDate+"';");
+
+        mDB.close();
     }
 
     public List getResult(){
@@ -119,7 +105,39 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(3,cursor.getString(3));
             mList.add(4,cursor.getString(4));
 
+        }
+        return mList;
+    }
 
+//    // 임시로 데이터 베이스 보여줌
+//        arrowbutton.setOnClickListener(new View.OnClickListener(){
+//        @Override
+//        public void onClick(View view){
+//            TextView edit_categoryN2 = findViewById(R.id.edit_categoryN2); // 카테고리 edit
+//            TextView answer2 = findViewById(R.id.edit_answer2); // 카테고리 edit
+//            ImageView img2 = findViewById(R.id.img2); // 이미지 버튼
+//            TextView num2 = findViewById(R.id.num2); // 숫자
+//
+//            List list = dbSuppormer.getResult();
+//
+//            edit_categoryN2.setText(String.valueOf(list.get(1)));
+//            answer2.setText(String.valueOf(list.get(3)));
+//            num2.setText(String.valueOf(list.get(0)));
+//            img2.setImageBitmap((Bitmap) list.get(2));
+//
+//        }
+//    });
+
+    public List getResultCategoryN(){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+
+        Cursor cursor = db.rawQuery("SELECT DISTINCT categoryN FROM Qtable ", null);
+        while(cursor.moveToNext()){
+
+            Log.i("카테고리 ", cursor.getString(0));
+            mList.add(0,cursor.getString(0));
 
         }
         return mList;

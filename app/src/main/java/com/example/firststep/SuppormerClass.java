@@ -6,25 +6,26 @@ import org.w3c.dom.Text;
 
 //서포머 테이블 정보들 setter getter 함수 클래스
 public class SuppormerClass {
-    private int id;
     private String CategoryN;
+    private int num;
     private Bitmap image;
     private String answer;
     private String writeDate;
 
-    public SuppormerClass(String categoryN, Bitmap image, String answer, String writeDate) {
+    public SuppormerClass(String categoryN, int num, Bitmap image, String answer, String writeDate) {
         CategoryN = categoryN;
+        this.num = num;
         this.image = image;
         this.answer = answer;
         this.writeDate = writeDate;
     }
 
-    public int getId() {
-        return id;
+    public int getNum() {
+        return num;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public String getCategoryN() {

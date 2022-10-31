@@ -36,12 +36,12 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/plus"
+            android:id="@+id/insert"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            app:srcCompat="@drawable/baseline_add_circle_outline_black_24dp" />
+            android:background="@drawable/insert2" />
 
     </LinearLayout>
 
@@ -77,138 +77,28 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="#000000"
-                android:textSize="20sp" />
 
-            <ImageView
-                android:id="@+id/img"
-                android:layout_width="248dp"
-                android:layout_height="160dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/answer"
-                android:layout_width="14dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="답변 : "
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/edit_answer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textColor="#000000" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/editBox"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:gravity="end"
             android:orientation="vertical">
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/categroyN3"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="카테고리 :"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/edit_categoryN2"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/num2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="#000000"
-                android:textSize="20sp" />
 
             <ImageView
-                android:id="@+id/img2"
-                android:layout_width="248dp"
-                android:layout_height="160dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/answer2"
-                android:layout_width="14dp"
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="답변 : "
-                android:textColor="#000000"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/edit_answer2"
-                android:layout_width="14dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+                android:layout_marginBottom="20px"
+                android:background="@drawable/baseline_add_circle_outline_black_24dp" />
         </LinearLayout>
 
     </LinearLayout>
