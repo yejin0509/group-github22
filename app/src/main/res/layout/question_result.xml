@@ -11,36 +11,36 @@
     <!--    상단 뷰-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="100dp"
         android:background="#F6C74B">
         <!--       뒤로가기 화살표 버튼-->
+        <!--상단-->
         <Button
             android:id="@+id/arrowbutton"
             android:layout_width="30dp"
             android:layout_height="35dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/arrow"
-            />
-        <!--상단-->
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/arrow" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="122dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="30dp"
             android:text="결과"
             android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
         <!--완료버튼-->
         <Button
             android:id="@+id/clearbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="75dp"
-            android:stateListAnimator="@null"
+            android:layout_marginLeft="95dp"
+            android:layout_marginTop="30dp"
             android:background="#F6C74B"
+            android:stateListAnimator="@null"
             android:text="완료"
             android:textSize="20sp" />
     </LinearLayout>

@@ -12,32 +12,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="100dp"
         android:background="#F6C74B">
         <!--       뒤로가기 화살표 버튼-->
         <Button
             android:id="@+id/arrowbutton"
             android:layout_width="30dp"
             android:layout_height="35dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/arrow"
-            />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/arrow" />
         <!--상단-->
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="177dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="30dp"
             android:text="AAC교육"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/insert"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
