@@ -126,6 +126,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
 //            img2.setImageBitmap((Bitmap) list.get(2));
 //
 //        }
+
 //    });
 
     public List getResultCategoryN(){
@@ -137,6 +138,20 @@ public class DBSuppormer extends SQLiteOpenHelper {
         while(cursor.moveToNext()){
 
             Log.i("카테고리 ", cursor.getString(0));
+            mList.add(0,cursor.getString(0));
+
+        }
+        return mList;
+    }
+
+    public List getResultCategoryAnswer(){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+
+        Cursor cursor = db.rawQuery("SELECT DISTINCT answer FROM Qtable ", null);
+        while(cursor.moveToNext()){
+
             mList.add(0,cursor.getString(0));
 
         }
