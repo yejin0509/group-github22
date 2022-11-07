@@ -1,6 +1,7 @@
 
 package com.example.firststep;
 
+        import android.content.Intent;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -13,6 +14,15 @@ package com.example.firststep;
 
 public class Class_question_listAdapter extends RecyclerView.Adapter<Class_question_listAdapter.MyViewHolder> { //viewHolder 은 layout 객체에 존재하는 view를 보관하는 holder 객체
 
+    interface OnItemClickListener{
+        void onItemClick(View view, int position,String category);
+    }
+
+    OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        mListener = listener;
+    }
     ArrayList<String> categoryList;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -40,6 +50,12 @@ public class Class_question_listAdapter extends RecyclerView.Adapter<Class_quest
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
         holder.categoryText.setText(String.valueOf(categoryList.get(position)));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListener.onItemClick(holder.itemView, position, String.valueOf(categoryList));
+            }
+        });
     }
 
     @Override

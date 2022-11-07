@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.sql.Blob;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 
-public class Class_question_list extends AppCompatActivity {
+public class Class_question_list extends AppCompatActivity implements Class_question_listAdapter.OnItemClickListener {
 
     DBSuppormer dbSuppormer;
     RecyclerView recyclerView;
@@ -55,6 +56,7 @@ public class Class_question_list extends AppCompatActivity {
 
         recyclerList();
 
+        adapter1.setOnItemClickListener(this);
 
     }
 
@@ -126,5 +128,9 @@ public class Class_question_list extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onItemClick(View view, int position, String category) {
+        Intent intent = new Intent(getApplicationContext(),Question.class);
+        startActivity(intent);
+    }
 }
