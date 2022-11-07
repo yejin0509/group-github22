@@ -181,7 +181,6 @@ public class DBSuppormer extends SQLiteOpenHelper {
 
     //해당 카테고리 List 열기
     public List getValue(String name){
-        // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         List mList = new ArrayList();
 

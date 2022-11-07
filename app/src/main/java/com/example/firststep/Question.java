@@ -80,10 +80,10 @@ public class Question extends AppCompatActivity {
 
 
         ImageView image = (ImageView) findViewById(R.id.imageView2);
-        image.setImageBitmap((Bitmap) value_1.get(2));
+        image.setImageBitmap((Bitmap) value_1.get(2));      //2번이 이미지
 
         //정답, 선택지 answer_another 랜덤으로 삽입
-        anotherAnswer((String) value_1.get(3));
+        anotherAnswer((String) value_1.get(3));     //3번이 정답
 
         //선택지 출력
         TextView choice1 = (TextView) findViewById(R.id.choice1);
@@ -167,41 +167,10 @@ public class Question extends AppCompatActivity {
         list1.add(String.valueOf(list.get(i)));
         }
 
-
-
-
         for(int i = 0; i< answer.size(); i++) {
         answerList.add(String.valueOf(answer.get(i)));
         }
 
-
-
-  /*      //랜덤으로 정답 외에 선택지 List로 저장
-        for(int i = 0; i< answer.size(); i++) {
-        String string_answer = String.valueOf(answer.get(i));       //string_answer 정답
-        Log.i("string_answer", string_answer);
-        answer_another.clear();
-        //중복 방지
-        String another_1 = string_answer;
-
-        for (int j = 0; j < answer.size(); j++) {
-        int randomIndex = random.nextInt(answer.size());        //random index
-        String string_another = String.valueOf(answer.get(randomIndex));
-        Log.i("string_another", string_another);
-
-        //정답과 another이 다르면서 저장된 another과 다르면 저장
-        if (!string_answer.equals(string_another) && !another_1.equals(string_another)) {
-        answer_another.add(string_another);
-        another_1 = string_another;
-        //2개만 받고 break;
-        if(answer_another.size() == 2){
-        Log.i("answer_another", String.valueOf(answer_another.get(0)));
-        Log.i("answer_another", String.valueOf(answer_another.get(1)));
-        break;
-        }
-        }
-        }
-        }*/
 
 
 
