@@ -131,6 +131,7 @@ public class Class_question_list extends AppCompatActivity implements Class_ques
     @Override
     public void onItemClick(View view, int position, String category) {
         Intent intent = new Intent(getApplicationContext(),Question.class);
+        intent.putExtra("해당 카테고리 이름",category);
         startActivity(intent);
     }
 }

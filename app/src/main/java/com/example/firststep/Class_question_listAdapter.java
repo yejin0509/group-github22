@@ -2,6 +2,7 @@
 package com.example.firststep;
 
         import android.content.Intent;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class Class_question_listAdapter extends RecyclerView.Adapter<Class_quest
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onItemClick(holder.itemView, position, String.valueOf(categoryList));
+                mListener.onItemClick(holder.itemView, position, String.valueOf(categoryList.get(position)));
+                Log.i("categoryPosition", String.valueOf(categoryList.get(position)));
             }
         });
     }

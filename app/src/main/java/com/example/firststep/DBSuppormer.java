@@ -144,6 +144,26 @@ public class DBSuppormer extends SQLiteOpenHelper {
         return mList;
     }
 
+
+
+    //개수 넘겨줌
+    public int getNumberCategoryN(String name){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+        int num = 0;
+
+        Cursor cursor = db.rawQuery("select count(*) from Qtable where categoryN='"+name+"';", null);
+        while(cursor.moveToNext()){
+
+            num = cursor.getInt(0);
+            Log.i("Int ",String.valueOf(num));
+
+        }
+        return num;
+    }
+
+
     public List getResultCategoryAnswer(){
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
@@ -158,4 +178,28 @@ public class DBSuppormer extends SQLiteOpenHelper {
         return mList;
     }
 
+
+    //해당 카테고리 List 열기
+    public List getValue(String name){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE categoryN = '"+name+"'ORDER BY RANDOM() LIMIT 1;", null);
+        while(cursor.moveToNext()){
+
+            byte[] image = cursor.getBlob(2);
+            Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+            mList.add(0,cursor.getInt(0));
+            mList.add(1,cursor.getString(1));
+            mList.add(2,bm);
+            mList.add(3,cursor.getString(3));
+            mList.add(4,cursor.getString(4));
+
+        }
+        return mList;
+    }
 }
+
+
