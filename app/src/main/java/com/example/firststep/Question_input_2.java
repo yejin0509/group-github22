@@ -30,41 +30,43 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
-public class Question_input extends AppCompatActivity {
+public class Question_input_2 extends AppCompatActivity {
 
     static Bitmap imgBit;
     ImageView edit_img;
     EditText edit_answer;
     TextView edit_num;
+    String categoryname;
 
-    EditText edit_categoryN;
+    TextView edit_categoryN;
 
     DBSuppormer dbSuppormer;
     RecyclerView recyclerView;
     ArrayList<SuppormerClass> itemArrayList;
-    Question_input_adapter adapter;
+    Question_input_2Adapter adapter;
 
     ImageView plus;
     ImageView insert;
 
     Intent intent;
-    String categoryname;
 
     int num = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.question_input);
+        setContentView(R.layout.question_input_2);
 
         Button arrowbutton = findViewById(R.id.arrowbutton); // 뒤로가기 버튼
         insert = findViewById(R.id.insert);
-        edit_categoryN = findViewById(R.id.edit_categoryN); // 카테고리 edit
-        edit_categoryN.setText(edit_categoryN.getText().toString());
+        edit_categoryN = findViewById(R.id.view_categoryN); // 카테고리 edit
         plus = findViewById(R.id.plus); // 추가 버튼
 
-        dbSuppormer = new DBSuppormer(Question_input.this);
+
+
+        dbSuppormer = new DBSuppormer(Question_input_2.this);
 
         // 뒤로 가기 버튼
         arrowbutton.setOnClickListener(new View.OnClickListener(){
@@ -83,7 +85,7 @@ public class Question_input extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        
+
         // 문제 만들기 버튼
         plus.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -91,8 +93,8 @@ public class Question_input extends AppCompatActivity {
                 edit_categoryN.setText(edit_categoryN.getText().toString());
 
                 // 다이얼로그 띄우고 문제 양식 입력받음
-                AlertDialog.Builder builder = new AlertDialog.Builder(Question_input.this);
-                View view2 = LayoutInflater.from(Question_input.this).inflate(R.layout.question_input_dialog, null, false);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Question_input_2.this);
+                View view2 = LayoutInflater.from(Question_input_2.this).inflate(R.layout.question_input_dialog, null, false);
                 builder.setView(view2);
 
                 edit_num = view2.findViewById(R.id.edit_num);
@@ -140,7 +142,16 @@ public class Question_input extends AppCompatActivity {
 
             }
         });
-       
+
+        // 해당 카테고리 이름 불러오기
+        intent = getIntent();
+        categoryname = intent.getStringExtra("해당 카테고리 이름");
+
+        //  카테고리 이름 출력
+        TextView category = findViewById(R.id.textView3);
+        category.setText(String.valueOf(categoryname));
+        edit_categoryN.setText(String.valueOf(categoryname));
+
         recyclerList();
     }
 
@@ -151,12 +162,14 @@ public class Question_input extends AppCompatActivity {
         // List item 생성
         itemArrayList = new ArrayList<SuppormerClass>();
 
+        itemArrayList = dbSuppormer.getResult(categoryname);
+
         // adapter 추가 및 layout manager 추가
-        adapter = new Question_input_adapter(this, itemArrayList);
+        adapter = new Question_input_2Adapter(this, itemArrayList);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
-
 
     // 이미지 갤러리에서 가져오기
     @Override
