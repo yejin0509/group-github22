@@ -160,7 +160,7 @@ public class Question extends AppCompatActivity{
             }
         });
 
-        //다음문제 ..
+        //다음문제 ....
 //        Button qnext = (Button) findViewById(R.id.qNext);
 //        qnext.setOnClickListener(new View.OnClickListener() {
 //
