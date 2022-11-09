@@ -109,6 +109,8 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
                         break;
 
                     case 1002:
+                        dbSuppormer = new DBSuppormer(mContext);
+
                         String wdate = (String) itemArrayList.get(getAdapterPosition()).getWriteDate();
 
                         itemArrayList.remove(getAdapterPosition());
