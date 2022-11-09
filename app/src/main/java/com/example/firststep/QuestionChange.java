@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionChange extends AppCompatActivity {
+public class QuestionChange extends AppCompatActivity implements QuestionChangeAdapter.OnItemClickListener {
 
     DBSuppormer dbSuppormer;
     RecyclerView recyclerView;
@@ -49,7 +49,7 @@ public class QuestionChange extends AppCompatActivity {
         });
 
         recyclerList();
-
+        adapter.setOnItemClickListener(this);
     }
 
     // 리사이클러뷰, 카드뷰 사용
@@ -71,6 +71,13 @@ public class QuestionChange extends AppCompatActivity {
         adapter = new QuestionChangeAdapter(this, categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+    }
+
+
+    public void onItemClicked(View view, int position, String category) {
+        Intent intent = new Intent(getApplicationContext(),Question_input_2.class);
+        intent.putExtra("해당 카테고리 이름",category);
+        startActivity(intent);
     }
 
 }

@@ -88,25 +88,28 @@ public class DBSuppormer extends SQLiteOpenHelper {
         mDB.close();
     }
 
-    public List getResult(){
+    public ArrayList<SuppormerClass> getResult(String caterotyN){
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
-        List mList = new ArrayList();
+        //List mList = new ArrayList();
+        ArrayList<SuppormerClass> itemArrayList = new ArrayList<SuppormerClass>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE id = '1' ", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE categoryN = '"+ caterotyN +"' ", null);
         while(cursor.moveToNext()){
 
             byte[] image = cursor.getBlob(2);
             Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
 
-            mList.add(0,cursor.getInt(0));
-            mList.add(1,cursor.getString(1));
-            mList.add(2,bm);
-            mList.add(3,cursor.getString(3));
-            mList.add(4,cursor.getString(4));
+//            mList.add(0,cursor.getInt(0));
+//            mList.add(1,cursor.getString(1));
+//            mList.add(2,bm);
+//            mList.add(3,cursor.getString(3));
+//            mList.add(4,cursor.getString(4));
+
+            itemArrayList.add(new SuppormerClass(cursor.getString(1),cursor.getInt(0),bm,cursor.getString(3),cursor.getString(4)));
 
         }
-        return mList;
+        return itemArrayList;
     }
 
 //    // 임시로 데이터 베이스 보여줌

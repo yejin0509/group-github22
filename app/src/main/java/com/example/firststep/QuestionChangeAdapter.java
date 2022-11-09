@@ -12,6 +12,16 @@ import java.util.ArrayList;
 
 public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAdapter.MyViewHolder> { //viewHolder 은 layout 객체에 존재하는 view를 보관하는 holder 객체
 
+    interface OnItemClickListener{
+        void onItemClicked(View view, int position, String data);
+    }
+
+    OnItemClickListener itemClickListener;
+
+    public void setOnItemClickListener (OnItemClickListener listener){
+        itemClickListener = listener;
+    }
+
     ArrayList<String> categoryList;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -39,6 +49,12 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
         holder.categoryText.setText(String.valueOf(categoryList.get(position)));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                itemClickListener.onItemClicked(holder.itemView, position, String.valueOf(categoryList.get(position)));
+            }
+        });
     }
 
     @Override
