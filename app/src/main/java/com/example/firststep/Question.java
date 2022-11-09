@@ -6,12 +6,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -19,9 +23,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
-public class Question extends AppCompatActivity {
+public class Question extends AppCompatActivity{
     DBSuppormer dbSuppormer;
     RecyclerView recyclerView;
     ArrayList<String> categoryList;
@@ -66,6 +71,106 @@ public class Question extends AppCompatActivity {
         recyclerList();
         Total_num();
         PrintValues();
+
+
+        //정답확인하는 변수 생성
+        TextView ch1=(TextView)findViewById(R.id.choice1);
+        TextView q1=(TextView)findViewById(R.id.tv_Q1);
+        TextView ch2=(TextView)findViewById(R.id.choice2);
+        TextView q2=(TextView)findViewById(R.id.tv_Q2);
+        TextView ch3=(TextView)findViewById(R.id.choice3);
+        TextView q3=(TextView)findViewById(R.id.tv_Q3);
+
+        //test
+//        List list_check = dbSuppormer.getValue(categoryname);
+//        String answer=(String)list_check.get(3);
+//        ImageView sendImage = (ImageView) findViewById(R.id.qimage);
+//        BitmapDrawable drawable = (BitmapDrawable) sendImage.getDrawable();
+//        Bitmap bitmap = drawable.getBitmap();
+//        int result=dbSuppormer.getQResult(bitmap);
+
+        //o x 이미지
+        ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
+        ImageView correct=(ImageView)findViewById(R.id.qResultCorrect);
+        //ox 이미지 숨기기
+        wrong.setVisibility(View.INVISIBLE);
+        correct.setVisibility(View.INVISIBLE);
+
+        ch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ch1.getText().toString()==ch3.getText().toString()){
+                    Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
+                    ch2.setEnabled(false);
+                    ch3.setEnabled(false);
+                    correct.setVisibility(View.VISIBLE);
+                    q1.setTextColor(Color.parseColor("#568A35"));
+                    ch1.setTextColor(Color.parseColor("#568A35"));
+                }else{
+                    Toast.makeText(getApplicationContext(),"result",Toast.LENGTH_SHORT).show();
+                    ch2.setEnabled(false);
+                    ch3.setEnabled(false);
+                    wrong.setVisibility(View.VISIBLE);
+                    q1.setTextColor(Color.parseColor("#ff0000"));
+                    ch1.setTextColor(Color.parseColor("#ff0000"));
+                }
+//                Toast.makeText(getApplicationContext(),"1텍스트가 눌림",Toast.LENGTH_SHORT).show();
+            }
+        });
+        ch2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ch2.getText().toString()==ch3.getText().toString()){
+                    Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
+                    ch1.setEnabled(false);
+                    ch3.setEnabled(false);
+                    correct.setVisibility(View.VISIBLE);
+                    q2.setTextColor(Color.parseColor("#568A35"));
+                    ch2.setTextColor(Color.parseColor("#568A35"));
+                }else{
+                    Toast.makeText(getApplicationContext(),"2오답",Toast.LENGTH_SHORT).show();
+                    ch1.setEnabled(false);
+                    ch3.setEnabled(false);
+                    wrong.setVisibility(View.VISIBLE);
+                    q2.setTextColor(Color.parseColor("#ff0000"));
+                    ch2.setTextColor(Color.parseColor("#ff0000"));
+                }
+//                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
+            }
+        });
+        ch3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ch3.getText().toString()==ch3.getText().toString()){
+                    Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
+                    ch2.setEnabled(false);
+                    ch1.setEnabled(false);
+                    correct.setVisibility(View.VISIBLE);
+                    q3.setTextColor(Color.parseColor("#568A35"));
+                    ch3.setTextColor(Color.parseColor("#568A35"));
+                }else{
+                    Toast.makeText(getApplicationContext(),"3오답",Toast.LENGTH_SHORT).show();
+                    ch2.setEnabled(false);
+                    ch1.setEnabled(false);
+                    wrong.setVisibility(View.VISIBLE);
+                    q3.setTextColor(Color.parseColor("#ff0000"));
+                    ch3.setTextColor(Color.parseColor("#ff0000"));
+                }
+//                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //다음문제 ..
+//        Button qnext = (Button) findViewById(R.id.qNext);
+//        qnext.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), Question.class);
+//                startActivity(intent);
+//            }
+//        });
+
     }
 
     private void PrintValues(){
@@ -79,7 +184,7 @@ public class Question extends AppCompatActivity {
         List value_1 = dbSuppormer.getValue(categoryname);
 
 
-        ImageView image = (ImageView) findViewById(R.id.imageView2);
+        ImageView image = (ImageView) findViewById(R.id.qimage);
         image.setImageBitmap((Bitmap) value_1.get(2));      //2번이 이미지
 
         //정답, 선택지 answer_another 랜덤으로 삽입
@@ -171,12 +276,58 @@ public class Question extends AppCompatActivity {
         answerList.add(String.valueOf(answer.get(i)));
         }
 
-
-
-
-
         }
+
+
+//    @Override
+//    public void onClick(View v) {
+//        TextView ch1=(TextView)findViewById(R.id.choice1);
+//        TextView q1=(TextView)findViewById(R.id.tv_Q1);
+//        TextView ch2=(TextView)findViewById(R.id.choice2);
+//        TextView q2=(TextView)findViewById(R.id.tv_Q2);
+//        TextView ch3=(TextView)findViewById(R.id.choice3);
+//        TextView q3=(TextView)findViewById(R.id.tv_Q3);
+//        switch (v.getId()){
+//            case R.id.choice1:
+//                if(ch1.getText().toString()==ch3.getText().toString()){
+//                    Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
+//                    q1.setTextColor(Color.parseColor("#568A35"));
+//                    ch1.setTextColor(Color.parseColor("#568A35"));
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"1오답",Toast.LENGTH_SHORT).show();
+//                    q1.setTextColor(Color.parseColor("#ff0000"));
+//                    ch1.setTextColor(Color.parseColor("#ff0000"));
+//                }
+////                Toast.makeText(getApplicationContext(),"1텍스트가 눌림",Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.choice2:
+//                if(ch2.getText().toString()==ch3.getText().toString()){
+//                    Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
+//                    q2.setTextColor(Color.parseColor("#568A35"));
+//                    ch2.setTextColor(Color.parseColor("#568A35"));
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"2오답",Toast.LENGTH_SHORT).show();
+//                    q2.setTextColor(Color.parseColor("#ff0000"));
+//                    ch2.setTextColor(Color.parseColor("#ff0000"));
+//                }
+////                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.choice3:
+//                if(ch3.getText().toString()==ch3.getText().toString()){
+//                    Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
+//                    q3.setTextColor(Color.parseColor("#568A35"));
+//                    ch3.setTextColor(Color.parseColor("#568A35"));
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"3오답",Toast.LENGTH_SHORT).show();
+//                    q3.setTextColor(Color.parseColor("#ff0000"));
+//                    ch3.setTextColor(Color.parseColor("#ff0000"));
+//                }
+////                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+//    }
 }
+
 //package com.example.firststep;
 //
 //import androidx.appcompat.app.AppCompatActivity;

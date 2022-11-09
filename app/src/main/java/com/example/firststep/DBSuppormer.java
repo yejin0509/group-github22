@@ -199,6 +199,22 @@ public class DBSuppormer extends SQLiteOpenHelper {
         }
         return mList;
     }
+
+//    public int getQResult(Bitmap image){
+//        SQLiteDatabase db=getWritableDatabase();
+//        Bitmap imageToStoreBitmap=image;
+//
+//        //이미지를 저장하려면 byte로 변환해야함.
+//        mByteArrayOutputStream=new ByteArrayOutputStream();
+//        imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
+//        imageInBytes=mByteArrayOutputStream.toByteArray();
+//        Cursor cursor=db.rawQuery("SELECT id FROM Qtable WHERE image= '"+imageToStoreBitmap+"';", null);
+//        int qresult=0;
+//        while (cursor.moveToNext()){
+//            qresult=cursor.getInt(0);
+//        }
+//        return qresult;
+//    }
 }
 
 

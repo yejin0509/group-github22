@@ -56,7 +56,7 @@ public class Question_input extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_input);
 
-        Button arrowbutton = findViewById(R.id.arrowbutton); // 뒤로가기 버튼
+        Button arrowbutton = findViewById(R.id.arrowbutton); // 뒤로 가기 버튼
         insert = findViewById(R.id.insert);
         edit_categoryN = findViewById(R.id.edit_categoryN); // 카테고리 edit
         edit_categoryN.setText(edit_categoryN.getText().toString());
