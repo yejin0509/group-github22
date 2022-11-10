@@ -3,6 +3,7 @@ package com.example.firststep;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,9 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { // viewHolder 생성 시에 호출
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_change2,parent,false);
+
+        CheckBox checkBox = view.findViewById(R.id.checkBox);
+        checkBox.setVisibility(View.GONE);
 
         return new MyViewHolder(view);
     }

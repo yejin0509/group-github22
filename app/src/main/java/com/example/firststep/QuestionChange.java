@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +50,15 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
             }
         });
 
+        // 삭제버튼
+        ImageView deleteButton = (ImageView) findViewById(R.id.imageView);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         recyclerList();
         adapter.setOnItemClickListener(this);
     }
@@ -64,8 +75,6 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         for(int i = 0; i<list.size(); i++){
             categoryList.add(String.valueOf(list.get(i)));
         }
-
-
 
         // adapter 추가 및 layout manager 추가
         adapter = new QuestionChangeAdapter(this, categoryList);
