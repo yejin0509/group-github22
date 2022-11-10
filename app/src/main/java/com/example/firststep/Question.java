@@ -35,7 +35,7 @@ public class Question extends AppCompatActivity{
 
 
     Intent intent;
-    String categoryname;
+    String categoryname, user_answer;
     int total_number = 0;
     int num = 1;
     List<String> answer_another = new ArrayList<>();
@@ -99,7 +99,7 @@ public class Question extends AppCompatActivity{
         ch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch1.getText().toString()==ch3.getText().toString()){
+                if(ch1.getText().toString()== user_answer){
                     Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch3.setEnabled(false);
@@ -120,7 +120,7 @@ public class Question extends AppCompatActivity{
         ch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch2.getText().toString()==ch3.getText().toString()){
+                if(ch2.getText().toString()==user_answer){
                     Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
                     ch1.setEnabled(false);
                     ch3.setEnabled(false);
@@ -141,7 +141,7 @@ public class Question extends AppCompatActivity{
         ch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch3.getText().toString()==ch3.getText().toString()){
+                if(ch3.getText().toString()==user_answer){
                     Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch1.setEnabled(false);
@@ -189,7 +189,7 @@ public class Question extends AppCompatActivity{
 
         //정답, 선택지 answer_another 랜덤으로 삽입
         anotherAnswer((String) value_1.get(3));     //3번이 정답
-
+        user_answer = ((String) value_1.get(3));
         //선택지 출력
         TextView choice1 = (TextView) findViewById(R.id.choice1);
         choice1.setText((CharSequence) answer_another.get(0));
