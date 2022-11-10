@@ -34,21 +34,56 @@
     </LinearLayout>
 
     <!-- 문제 번호   -->
-    <TextView
-        android:id="@+id/textView4"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="50dp"
-        android:text="5."
-        android:textSize="30sp" />
+        android:layout_height="150dp">
+        <!--정답 오답 사진-->
+        <ImageView
+            android:id="@+id/qResultWrong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/closelarge" />
+
+        <ImageView
+            android:id="@+id/qResultCorrect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/correctlarge" />
+
+        <!--문제 번호-->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/qResultWrong"
+            android:layout_alignTop="@+id/qResultWrong"
+            android:layout_alignRight="@+id/qResultWrong"
+            android:layout_alignBottom="@+id/qResultWrong"
+
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:letterSpacing="0.04"
+            android:text="1."
+            android:textSize="30sp" />
+    </RelativeLayout>
+<!--    <TextView-->
+<!--        android:id="@+id/textView4"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="40dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:text="5."-->
+<!--        android:textSize="30sp" />-->
 
     <!--문제 사진-->
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/qimage"
         android:layout_width="match_parent"
         android:layout_height="194dp"
-        android:layout_marginTop="40dp"
         android:src="@drawable/pancil" />
 
     <RelativeLayout
@@ -110,5 +145,14 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
+    <android.widget.Button
+        android:id="@+id/qNext"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="330dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/arrow_2"
+        />
 
 </LinearLayout>

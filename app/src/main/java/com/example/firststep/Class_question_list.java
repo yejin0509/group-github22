@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.Blob;
@@ -57,6 +58,7 @@ public class Class_question_list extends AppCompatActivity implements Class_ques
         recyclerList();
 
         adapter1.setOnItemClickListener(this);
+
 
     }
 
