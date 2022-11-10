@@ -88,28 +88,25 @@ public class DBSuppormer extends SQLiteOpenHelper {
         mDB.close();
     }
 
-    public ArrayList<SuppormerClass> getResult(String caterotyN){
+    public List getResult(){
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
-        //List mList = new ArrayList();
-        ArrayList<SuppormerClass> itemArrayList = new ArrayList<SuppormerClass>();
+        List mList = new ArrayList();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE categoryN = '"+ caterotyN +"' ", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE id = '1' ", null);
         while(cursor.moveToNext()){
 
             byte[] image = cursor.getBlob(2);
             Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
 
-//            mList.add(0,cursor.getInt(0));
-//            mList.add(1,cursor.getString(1));
-//            mList.add(2,bm);
-//            mList.add(3,cursor.getString(3));
-//            mList.add(4,cursor.getString(4));
-
-            itemArrayList.add(new SuppormerClass(cursor.getString(1),cursor.getInt(0),bm,cursor.getString(3),cursor.getString(4)));
+            mList.add(0,cursor.getInt(0));
+            mList.add(1,cursor.getString(1));
+            mList.add(2,bm);
+            mList.add(3,cursor.getString(3));
+            mList.add(4,cursor.getString(4));
 
         }
-        return itemArrayList;
+        return mList;
     }
 
 //    // 임시로 데이터 베이스 보여줌
@@ -203,21 +200,23 @@ public class DBSuppormer extends SQLiteOpenHelper {
         return mList;
     }
 
-//    public int getQResult(Bitmap image){
-//        SQLiteDatabase db=getWritableDatabase();
-//        Bitmap imageToStoreBitmap=image;
-//
-//        //이미지를 저장하려면 byte로 변환해야함.
-//        mByteArrayOutputStream=new ByteArrayOutputStream();
-//        imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
-//        imageInBytes=mByteArrayOutputStream.toByteArray();
-//        Cursor cursor=db.rawQuery("SELECT id FROM Qtable WHERE image= '"+imageToStoreBitmap+"';", null);
-//        int qresult=0;
-//        while (cursor.moveToNext()){
-//            qresult=cursor.getInt(0);
-//        }
-//        return qresult;
-//    }
+    public List getResultList(String categoryN){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        List mList = new ArrayList();
+        Cursor cursor = db.rawQuery("SELECT * FROM Qtable WHERE categoryN = '"+ categoryN +"' ", null);
+        while(cursor.moveToNext()){
+            byte[] image = cursor.getBlob(2);
+            Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
+            mList.add(0,cursor.getInt(0));
+            mList.add(1,cursor.getString(1));
+            mList.add(2,bm);
+            mList.add(3,cursor.getString(3));
+            mList.add(4,cursor.getString(4));
+
+        }
+        return mList;
+    }
 }
 
 

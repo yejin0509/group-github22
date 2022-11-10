@@ -276,7 +276,8 @@ public class Question extends AppCompatActivity{
         answerList.add(String.valueOf(answer.get(i)));
         }
 
-        }
+
+
 
 
 //    @Override
