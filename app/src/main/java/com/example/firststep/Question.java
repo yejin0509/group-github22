@@ -100,19 +100,25 @@ public class Question extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(ch1.getText().toString()== user_answer){
-                    Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q1.setTextColor(Color.parseColor("#568A35"));
                     ch1.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"result",Toast.LENGTH_SHORT).show();
-                    ch2.setEnabled(false);
-                    ch3.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q1.setTextColor(Color.parseColor("#ff0000"));
                     ch1.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch2.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q2.setTextColor(Color.parseColor("#568A35"));
+                        ch2.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch3.getText().toString()== user_answer){
+                        ch2.setEnabled(false);
+                        q3.setTextColor(Color.parseColor("#568A35"));
+                        ch3.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
 //                Toast.makeText(getApplicationContext(),"1텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
@@ -121,19 +127,27 @@ public class Question extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(ch2.getText().toString()==user_answer){
-                    Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
                     ch1.setEnabled(false);
                     ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#568A35"));
                     ch2.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"2오답",Toast.LENGTH_SHORT).show();
                     ch1.setEnabled(false);
                     ch3.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#ff0000"));
                     ch2.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch1.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q1.setTextColor(Color.parseColor("#568A35"));
+                        ch1.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch3.getText().toString()== user_answer){
+                        ch1.setEnabled(false);
+                        q3.setTextColor(Color.parseColor("#568A35"));
+                        ch3.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
 //                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
@@ -142,19 +156,27 @@ public class Question extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 if(ch3.getText().toString()==user_answer){
-                    Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch1.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#568A35"));
                     ch3.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"3오답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch1.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#ff0000"));
                     ch3.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch2.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q2.setTextColor(Color.parseColor("#568A35"));
+                        ch2.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch1.getText().toString()== user_answer){
+                        ch2.setEnabled(false);
+                        q1.setTextColor(Color.parseColor("#568A35"));
+                        ch1.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
 //                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
