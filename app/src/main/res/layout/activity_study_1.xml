@@ -9,29 +9,35 @@
     tools:context=".Activity_study_1">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
+        android:layout_height="100dp"
         android:background="#F6C74B"
         >
         <!--        화살표 버튼-->
+        <!--문제 분야-->
         <android.widget.Button
             android:id="@+id/button2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginLeft="3dp"
-            android:background="@drawable/arrow"
-            />
-        <!--문제 분야-->
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/baseline_arrow_back_black_24dp" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="118dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginLeft="135dp"
+            android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
             android:text="감정"
-            android:textSize="30sp" />
+            android:textStyle="bold"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout" />
     </LinearLayout>
 
     <!-- 문제 번호   -->
@@ -66,8 +72,8 @@
 
     <android.widget.Button
         android:id="@+id/button4"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="30dp"
         android:layout_marginStart="330dp"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="80dp"
