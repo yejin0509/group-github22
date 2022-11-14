@@ -58,19 +58,8 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
 
         deleteButton = findViewById(R.id.imageView);
 
-        //LayoutInflater 객체 생성
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.question_change2, null);
-
-        checkBox = view.findViewById(R.id.checkBox);
-
-        checkBox.setVisibility(View.GONE);
-
-
-
         recyclerList();
         adapter.setOnItemClickListener(this);
-        //adapter.setOnItemLongClickListener(this);
     }
 
     // 리사이클러뷰, 카드뷰 사용
@@ -99,11 +88,5 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         startActivity(intent);
     }
 
-//    public void onItemLongClicked(View view, int position, String category) {
-////        CheckBox checkBox = findViewById(R.id.checkBox);
-////
-////        checkBox.setVisibility(View.VISIBLE);
-////        adapter.notifyDataSetChanged();
-//    }
 
 }

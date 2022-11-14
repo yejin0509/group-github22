@@ -128,7 +128,7 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
             Collections.sort(checkPosition, Collections.reverseOrder());
 
             for(int n = 0; n<checkPosition.size(); n++ ){
-                //dbSuppormer.deleteValue(String.valueOf(categoryList.get(Integer.parseInt(checkPosition.get(n))).getCategoryN()));
+                dbSuppormer.deleteValue(String.valueOf(categoryList.get(Integer.parseInt(checkPosition.get(n))).getCategoryN()));
                 categoryList.remove(Integer.parseInt(checkPosition.get(n)));
             }
 
@@ -142,14 +142,6 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
     }
 
-
-//    public void show(){
-//        if(checkBox2.getVisibility() == View.GONE){
-//            checkBox2.setVisibility(View.VISIBLE);
-//        } else {
-//            checkBox2.setVisibility(View.GONE);
-//        }
-//    }
 
     @Override
     public int getItemCount() { // 전체 item 개수 반환
