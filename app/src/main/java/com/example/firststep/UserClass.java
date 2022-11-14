@@ -4,9 +4,8 @@ import android.graphics.Bitmap;
 
 public class UserClass {
     private int id;
-    private int QNumber;
+    private String QNumber;
     private String categoryN;
-    private Bitmap image;
     private String choice1;
     private String choice2;
     private String choice3;
@@ -14,10 +13,9 @@ public class UserClass {
     private String ResultA;
     private String writeDate;
 
-    public UserClass(int QNumber, String categoryN, Bitmap image, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate) {
+    public UserClass(String QNumber, String categoryN, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate) {
         this.QNumber = QNumber;
         this.categoryN = categoryN;
-        this.image = image;
         this.choice1 = choice1;
         this.choice2 = choice2;
         this.choice3 = choice3;
@@ -34,11 +32,11 @@ public class UserClass {
         this.id = id;
     }
 
-    public int getQNumber() {
+    public String getQNumber() {
         return QNumber;
     }
 
-    public void setQNumber(int QNumber) {
+    public void setQNumber(String QNumber) {
         this.QNumber = QNumber;
     }
 
@@ -48,14 +46,6 @@ public class UserClass {
 
     public void setCategoryN(String categoryN) {
         this.categoryN = categoryN;
-    }
-
-    public Bitmap getImage() {
-        return image;
-    }
-
-    public void setImage(Bitmap image) {
-        this.image = image;
     }
 
     public String getChoice1() {

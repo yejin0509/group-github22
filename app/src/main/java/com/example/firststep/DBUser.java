@@ -16,9 +16,6 @@ public class DBUser extends SQLiteOpenHelper {
     private static final int DB_VERSION=1;
     private static final String DB_NAME="User.db";
 
-    private ByteArrayOutputStream mByteArrayOutputStream;
-    private byte[] imageInBytes;
-
     public DBUser(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -26,7 +23,7 @@ public class DBUser extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS UserTable (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "QNumber INTEGER NOT NULL, categoryN TEXT NOT NULL, image blob NOT NULL, choice1 TEXT NOT NULL," +
+                "QNumber TEXT NOT NULL, categoryN TEXT NOT NULL, choice1 TEXT NOT NULL," +
                 "choice2 TEXT NOT NULL, choice3 TEXT NOT NULL, userA TEXT NOT NULL," +
                 "ResultA TEXT NOT NULL, writeDate TEXT NOT NULL)");
     }
@@ -38,25 +35,21 @@ public class DBUser extends SQLiteOpenHelper {
     }
 
     //insert table 데이터 입력
-    public void Insert(int QNumber, String categoryN, Bitmap image, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate){
+    public void Insert(String _QNumber, String _categoryN,String _choice1, String _choice2, String _choice3, String _userA, String _resultA, String _writeDate){
         SQLiteDatabase mDB = this.getWritableDatabase();
-        Bitmap imageToStoreBitmap=image;
-
-        //이미지를 저장하려면 byte로 변환해야함.
-        mByteArrayOutputStream=new ByteArrayOutputStream();
-        imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
-        imageInBytes=mByteArrayOutputStream.toByteArray();
+//
+//        mDB.execSQL("INSERT INTO UserTable (QNumber, categoryN, choice1, choice2, choice3,userA,ResultA,writeDate)" +
+//                " VALUES('" + QNumber +"','"+categoryN+"','"+choice1+"','"+choice2+"','"+choice3+"','"+userA+"','"+resultA+"','"+writeDate+"');");
 
         ContentValues cv = new ContentValues();
-        cv.put("QNumber",QNumber);
-        cv.put("categoryN", categoryN);
-        cv.put("image",imageInBytes);
-        cv.put("choice1", choice1);
-        cv.put("choice2", choice2);
-        cv.put("choice3", choice3);
-        cv.put("userA", userA);
-        cv.put("resultA", resultA);
-        cv.put("writeDate", writeDate);
+        cv.put("QNumber",_QNumber);
+        cv.put("categoryN", _categoryN);
+        cv.put("choice1", _choice1);
+        cv.put("choice2", _choice2);
+        cv.put("choice3", _choice3);
+        cv.put("userA", _userA);
+        cv.put("ResultA", _resultA);
+        cv.put("writeDate", _writeDate);
         long id = mDB.insert("UserTable",null,cv);
 
         mDB.close();

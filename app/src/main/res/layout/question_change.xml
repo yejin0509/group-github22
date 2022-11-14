@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f6c74b"
-    android:backgroundTint="#F6C74B"
+    android:background="#E37d4e"
+    android:backgroundTint="#E37d4e"
     tools:context=".QuestionChange">
 
     <TextView
@@ -63,6 +63,13 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text=" MAIN > AAC교육 등록하기" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

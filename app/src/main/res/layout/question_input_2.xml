@@ -13,7 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#F6C74B">
+        android:background="#E37d4e">
 
         <!--       뒤로가기 화살표 버튼-->
         <Button

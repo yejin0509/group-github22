@@ -22,12 +22,14 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class Question extends AppCompatActivity{
     DBSuppormer dbSuppormer;
+    DBUser dbUser;
     RecyclerView recyclerView;
     ArrayList<String> categoryList;
     ArrayList<String> answerList;
@@ -35,7 +37,7 @@ public class Question extends AppCompatActivity{
 
 
     Intent intent;
-    String categoryname;
+    String categoryname, user_answer;
     int total_number = 0;
     int num = 1;
     List<String> answer_another = new ArrayList<>();
@@ -81,13 +83,12 @@ public class Question extends AppCompatActivity{
         TextView ch3=(TextView)findViewById(R.id.choice3);
         TextView q3=(TextView)findViewById(R.id.tv_Q3);
 
-        //test
-//        List list_check = dbSuppormer.getValue(categoryname);
-//        String answer=(String)list_check.get(3);
-//        ImageView sendImage = (ImageView) findViewById(R.id.qimage);
-//        BitmapDrawable drawable = (BitmapDrawable) sendImage.getDrawable();
-//        Bitmap bitmap = drawable.getBitmap();
-//        int result=dbSuppormer.getQResult(bitmap);
+        TextView qnum=(TextView)findViewById(R.id.qNumber);
+
+        long mNow = System.currentTimeMillis();
+        Date mdate = new Date(mNow);
+        String sdate = String.valueOf(mdate);
+
 
         //o x 이미지
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
@@ -99,41 +100,64 @@ public class Question extends AppCompatActivity{
         ch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch1.getText().toString()==ch3.getText().toString()){
-                    Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
+                dbUser=new DBUser(Question.this);
+                dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
+                        ch3.getText().toString().trim(),ch1.getText().toString().trim(),user_answer,sdate);
+
+                if(ch1.getText().toString()== user_answer){
                     ch2.setEnabled(false);
                     ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q1.setTextColor(Color.parseColor("#568A35"));
                     ch1.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"result",Toast.LENGTH_SHORT).show();
-                    ch2.setEnabled(false);
-                    ch3.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q1.setTextColor(Color.parseColor("#ff0000"));
                     ch1.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch2.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q2.setTextColor(Color.parseColor("#568A35"));
+                        ch2.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch3.getText().toString()== user_answer){
+                        ch2.setEnabled(false);
+                        q3.setTextColor(Color.parseColor("#568A35"));
+                        ch3.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
-//                Toast.makeText(getApplicationContext(),"1텍스트가 눌림",Toast.LENGTH_SHORT).show();
+
+//                Toast.makeText(getApplicationContext(),sdate,Toast.LENGTH_SHORT).show();
             }
         });
         ch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch2.getText().toString()==ch3.getText().toString()){
-                    Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
+                dbUser=new DBUser(Question.this);
+                dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
+                        ch3.getText().toString().trim(),ch2.getText().toString().trim(),user_answer,sdate);
+
+                if(ch2.getText().toString()==user_answer){
                     ch1.setEnabled(false);
                     ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#568A35"));
                     ch2.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"2오답",Toast.LENGTH_SHORT).show();
                     ch1.setEnabled(false);
                     ch3.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#ff0000"));
                     ch2.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch1.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q1.setTextColor(Color.parseColor("#568A35"));
+                        ch1.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch3.getText().toString()== user_answer){
+                        ch1.setEnabled(false);
+                        q3.setTextColor(Color.parseColor("#568A35"));
+                        ch3.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
 //                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
@@ -141,20 +165,32 @@ public class Question extends AppCompatActivity{
         ch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(ch3.getText().toString()==ch3.getText().toString()){
-                    Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
+                dbUser=new DBUser(Question.this);
+                dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
+                        ch3.getText().toString().trim(),ch3.getText().toString().trim(),user_answer,sdate);
+
+                if(ch3.getText().toString()==user_answer){
                     ch2.setEnabled(false);
                     ch1.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#568A35"));
                     ch3.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    Toast.makeText(getApplicationContext(),"3오답",Toast.LENGTH_SHORT).show();
                     ch2.setEnabled(false);
                     ch1.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#ff0000"));
                     ch3.setTextColor(Color.parseColor("#ff0000"));
+                    if(ch2.getText().toString()== user_answer){
+                        ch3.setEnabled(false);
+                        q2.setTextColor(Color.parseColor("#568A35"));
+                        ch2.setTextColor(Color.parseColor("#568A35"));
+                    }
+                    else if(ch1.getText().toString()== user_answer){
+                        ch2.setEnabled(false);
+                        q1.setTextColor(Color.parseColor("#568A35"));
+                        ch1.setTextColor(Color.parseColor("#568A35"));
+                    }
                 }
 //                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
@@ -175,7 +211,7 @@ public class Question extends AppCompatActivity{
 
     private void PrintValues(){
         //number 출력
-        TextView number = (TextView) findViewById(R.id.textView4);
+        TextView number = (TextView) findViewById(R.id.qNumber);
         number.setText(String.valueOf(num)+".");
         if(num > total_number)
             num = 0;
@@ -189,7 +225,7 @@ public class Question extends AppCompatActivity{
 
         //정답, 선택지 answer_another 랜덤으로 삽입
         anotherAnswer((String) value_1.get(3));     //3번이 정답
-
+        user_answer = ((String) value_1.get(3));
         //선택지 출력
         TextView choice1 = (TextView) findViewById(R.id.choice1);
         choice1.setText((CharSequence) answer_another.get(0));
@@ -222,31 +258,31 @@ public class Question extends AppCompatActivity{
         //랜덤
         Random random = new Random();
 
-            answer_another.clear();
-            //중복 방지
-            String another_1 = answer_real;
+        answer_another.clear();
+        //중복 방지
+        String another_1 = answer_real;
 
-            for (int j = 0; j < answer.size(); j++) {
-                int randomIndex = random.nextInt(answer.size());        //random index
-                String string_another = String.valueOf(answer.get(randomIndex));
-                Log.i("의사소통 another", string_another);
+        for (int j = 0; j < answer.size(); j++) {
+            int randomIndex = random.nextInt(answer.size());        //random index
+            String string_another = String.valueOf(answer.get(randomIndex));
+            Log.i("의사소통 another", string_another);
 
-                //정답과 another이 다르면서 저장된 another과 다르면 저장
-                if (!answer_real.equals(string_another) && !another_1.equals(string_another)) {
-                    answer_another.add(string_another);
-                    another_1 = string_another;
-                    //2개만 받고 break;
-                    if(answer_another.size() == 2){
-                        answer_another.add(answer_real);
-                        Collections.shuffle(answer_another);
-                        Log.i("의사소통 answer_another", String.valueOf(answer_another.get(0)));
-                        Log.i("의사소통 answer_another", String.valueOf(answer_another.get(1)));
-                        Log.i("의사소통 answer_another", String.valueOf(answer_another.get(2)));
-                        break;
-                    }
+            //정답과 another이 다르면서 저장된 another과 다르면 저장
+            if (!answer_real.equals(string_another) && !another_1.equals(string_another)) {
+                answer_another.add(string_another);
+                another_1 = string_another;
+                //2개만 받고 break;
+                if(answer_another.size() == 2){
+                    answer_another.add(answer_real);
+                    Collections.shuffle(answer_another);
+                    Log.i("의사소통 answer_another", String.valueOf(answer_another.get(0)));
+                    Log.i("의사소통 answer_another", String.valueOf(answer_another.get(1)));
+                    Log.i("의사소통 answer_another", String.valueOf(answer_another.get(2)));
+                    break;
                 }
             }
         }
+    }
 
 
     @SuppressLint("LongLogTag")
@@ -268,12 +304,12 @@ public class Question extends AppCompatActivity{
 
 
         for (int i = 0; i < list.size(); i++) {
-        categoryList.add(String.valueOf(list.get(i)));
-        list1.add(String.valueOf(list.get(i)));
+            categoryList.add(String.valueOf(list.get(i)));
+            list1.add(String.valueOf(list.get(i)));
         }
 
         for(int i = 0; i< answer.size(); i++) {
-        answerList.add(String.valueOf(answer.get(i)));
+            answerList.add(String.valueOf(answer.get(i)));
         }
 
 
@@ -327,7 +363,7 @@ public class Question extends AppCompatActivity{
 //                break;
 //        }
 //    }
-}
+    }
 }
 
 //package com.example.firststep;
