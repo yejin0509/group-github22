@@ -162,10 +162,6 @@ public class Question_input_2 extends AppCompatActivity {
         // List item 생성
         itemArrayList = new ArrayList<SuppormerClass>();
 
-        // 해당 카테고리 이름 불러오기
-        intent = getIntent();
-        categoryname = intent.getStringExtra("해당 카테고리 이름");
-
         itemArrayList = dbSuppormer.getResult(categoryname);
 
         // adapter 추가 및 layout manager 추가

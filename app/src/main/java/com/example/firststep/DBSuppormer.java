@@ -213,6 +213,15 @@ public class DBSuppormer extends SQLiteOpenHelper {
         }
         return mList;
     }
+
+    // 카테고리로 그 모든 값 삭제
+    public void deleteValue(String categoryN){
+        SQLiteDatabase mDB=getWritableDatabase();
+        mDB.execSQL("DELETE FROM Qtable WHERE categoryN='"+categoryN+"';");
+
+        mDB.close();
+    }
+
 }
 
 

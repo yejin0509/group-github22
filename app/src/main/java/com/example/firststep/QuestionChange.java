@@ -8,20 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionChange extends AppCompatActivity implements QuestionChangeAdapter.OnItemClickListener {
+public class QuestionChange extends AppCompatActivity implements QuestionChangeAdapter.OnItemClickListener{
 
     DBSuppormer dbSuppormer;
     RecyclerView recyclerView;
-    ArrayList<String> categoryList;
+    ArrayList<ItemCheck> categoryList;
     QuestionChangeAdapter adapter;
+    ImageView deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,17 +54,9 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
             }
         });
 
-        // 삭제버튼
-        ImageView deleteButton = (ImageView) findViewById(R.id.imageView);
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         recyclerList();
         adapter.setOnItemClickListener(this);
+        //adapter.setOnItemLongClickListener(this);
     }
 
     // 리사이클러뷰, 카드뷰 사용
@@ -68,16 +64,16 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         // recycler view
         recyclerView = findViewById(R.id.recyclerView);
         // List item 생성
-        categoryList = new ArrayList<String>();
+        categoryList = new ArrayList<ItemCheck>();
 
         List list = dbSuppormer.getResultCategoryN();
 
         for(int i = 0; i<list.size(); i++){
-            categoryList.add(String.valueOf(list.get(i)));
+            categoryList.add(new ItemCheck(String.valueOf(list.get(i)), false,"GONE"));
         }
 
         // adapter 추가 및 layout manager 추가
-        adapter = new QuestionChangeAdapter(this, categoryList);
+        adapter = new QuestionChangeAdapter(this, this, categoryList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
     }
@@ -88,5 +84,12 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         intent.putExtra("해당 카테고리 이름",category);
         startActivity(intent);
     }
+
+//    public void onItemLongClicked(View view, int position, String category) {
+////        CheckBox checkBox = findViewById(R.id.checkBox);
+////
+////        checkBox.setVisibility(View.VISIBLE);
+////        adapter.notifyDataSetChanged();
+//    }
 
 }
