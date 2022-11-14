@@ -26,6 +26,8 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
     ArrayList<ItemCheck> categoryList;
     QuestionChangeAdapter adapter;
     ImageView deleteButton;
+    CheckBox checkBox;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,18 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
             }
         });
 
+        deleteButton = findViewById(R.id.imageView);
+
+        //LayoutInflater 객체 생성
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.question_change2, null);
+
+        checkBox = view.findViewById(R.id.checkBox);
+
+        checkBox.setVisibility(View.GONE);
+
+
+
         recyclerList();
         adapter.setOnItemClickListener(this);
         //adapter.setOnItemLongClickListener(this);
@@ -69,7 +83,7 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         List list = dbSuppormer.getResultCategoryN();
 
         for(int i = 0; i<list.size(); i++){
-            categoryList.add(new ItemCheck(String.valueOf(list.get(i)), false,"GONE"));
+            categoryList.add(new ItemCheck(String.valueOf(list.get(i)), false, "View.GONE"));
         }
 
         // adapter 추가 및 layout manager 추가
