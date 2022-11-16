@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ public class Activity_study_1 extends AppCompatActivity {
     DBSuppormer dbSuppormer;
     Intent intent;
     String categoryname;
+    ArrayList<SuppormerClass> itemArraylist;
+
+    int n = 0;
 
 
     @Override
@@ -28,29 +32,76 @@ public class Activity_study_1 extends AppCompatActivity {
         setContentView(R.layout.activity_study_1);
 
         dbSuppormer = new DBSuppormer(Activity_study_1.this);
+        itemArraylist = new ArrayList<SuppormerClass>();
+
 
         intent = getIntent();
         categoryname = intent.getStringExtra("해당 카테고리 이름");
-        List list = dbSuppormer.getResultList(categoryname);
 
 
         TextView textView3 = (TextView) findViewById(R.id.textView3);
         ImageView imageView2 = (ImageView) findViewById(R.id.imageView2);
-        EditText editTextNumber = (EditText) findViewById(R.id.editTextNumber);
+        TextView editTextNumber = (TextView) findViewById(R.id.editTextNumber);
+
+        itemArraylist = dbSuppormer.getResult(categoryname);
 
 
-        textView3.setText(String.valueOf(list.get(1)));
-        editTextNumber.setText(String.valueOf(list.get(3)));
-        imageView2.setImageBitmap((Bitmap) list.get(2));
+        textView3.setText(categoryname);
+        editTextNumber.setText(itemArraylist.get(n).getAnswer());
+        imageView2.setImageBitmap(itemArraylist.get(n).getImage());
+
+        Log.i("답변", String.valueOf(n)+ itemArraylist.get(n).getAnswer());
+
 
         Button Button2 = (Button) findViewById(R.id.button2);
         Button2.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Class_list.class);
                 startActivity(intent);
             }
         });
+
+        // 문제학습 문제 슬라이드 부분
+        Button nextStudy = findViewById(R.id.button4);
+        nextStudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                n += 1;
+
+                if(n < itemArraylist.size()){
+                    Log.i("답변", String.valueOf(n)+ itemArraylist.get(n).getAnswer());
+                    editTextNumber.setText(itemArraylist.get(n).getAnswer());
+                    imageView2.setImageBitmap(itemArraylist.get(n).getImage());
+                } else {
+                    Log.i("문제끝", String.valueOf(n));
+                    Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        Button backStudy = findViewById(R.id.button8);
+        backStudy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                n -= 1;
+
+                if(n < itemArraylist.size()){
+                    Log.i("답변", String.valueOf(n)+ itemArraylist.get(n).getAnswer());
+                    editTextNumber.setText(itemArraylist.get(n).getAnswer());
+                    imageView2.setImageBitmap(itemArraylist.get(n).getImage());
+                } else if(n <= 0) {
+                    Log.i("문제끝", String.valueOf(n));
+                    Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                    startActivity(intent);
+                } else {
+                    Log.i("문제끝", String.valueOf(n));
+                    Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
     }
 }
