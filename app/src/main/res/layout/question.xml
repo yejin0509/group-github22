@@ -153,6 +153,7 @@
         android:layout_marginLeft="3dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/arrow_2"
+        android:visibility="invisible"
         />
 
 </LinearLayout>
