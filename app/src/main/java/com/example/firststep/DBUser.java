@@ -37,9 +37,6 @@ public class DBUser extends SQLiteOpenHelper {
     //insert table 데이터 입력
     public void Insert(String _QNumber, String _categoryN,String _choice1, String _choice2, String _choice3, String _userA, String _resultA, String _writeDate){
         SQLiteDatabase mDB = this.getWritableDatabase();
-//
-//        mDB.execSQL("INSERT INTO UserTable (QNumber, categoryN, choice1, choice2, choice3,userA,ResultA,writeDate)" +
-//                " VALUES('" + QNumber +"','"+categoryN+"','"+choice1+"','"+choice2+"','"+choice3+"','"+userA+"','"+resultA+"','"+writeDate+"');");
 
         ContentValues cv = new ContentValues();
         cv.put("QNumber",_QNumber);
@@ -55,51 +52,4 @@ public class DBUser extends SQLiteOpenHelper {
         mDB.close();
     }
 
-// 수정과 삭제 쓸모없음.
-//    public void Update(int _QNumber, String _categoryN, Bitmap _image, String _choice1, String _choice2, String _choice3, String _userA, String _resultA, String _writeDate, String _beforeDate){
-//        //beforeDate는 문제 풀이시 같이 들어간 날짜고 writeDate는 수정하려는 시기 날짜
-//        try {
-//            SQLiteDatabase mDB=this.getWritableDatabase();
-//            Bitmap imageToStoreBitmap=_image;
-//
-//            //이미지를 저장하려면 byte로 변환해야함.
-//            mByteArrayOutputStream=new ByteArrayOutputStream();
-//            imageToStoreBitmap.compress(Bitmap.CompressFormat.PNG,100,mByteArrayOutputStream);
-//            imageInBytes=mByteArrayOutputStream.toByteArray();
-//
-//            //테이블 각 열에 정보 저장하기위해 cv 사용한 것
-//            ContentValues cv=new ContentValues();
-//            cv.put("QNumber",_QNumber);
-//            cv.put("categoryN", _categoryN);
-//            cv.put("image",imageInBytes);
-//            cv.put("choice1", _choice1);
-//            cv.put("choice2", _choice2);
-//            cv.put("choice3", _choice3);
-//            cv.put("userA", _userA);
-//            cv.put("resultA", _resultA);
-//            cv.put("writeDate", _writeDate);
-//
-//            //데이터 베이스 usertable에 cv 넘기기
-//            long checkIfQueryRuns=mDB.update("UserTable",cv, "writeDate=?",new String[]{_beforeDate});
-//
-//            //update 쿼리문이 정상적인지 확인
-//            if(checkIfQueryRuns!=0){
-//                Toast.makeText(context,"Data update success",Toast.LENGTH_SHORT).show();
-//                mDB.close();
-//            }
-//            else{
-//                Toast.makeText(context,"fails to update",Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//        catch (Exception e){
-//            Toast.makeText(context,e.getMessage(),Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//
-//    public void Delete(String _beforeDate){
-//        //문제 풀이 날짜만 받아서 조건걸어 삭제하기. 이미지 byte 변환없어서 바로 쿼리문 씀.
-//        SQLiteDatabase mDB=getWritableDatabase();
-//        mDB.execSQL("DELETE FROM UserTable WHERE writeDate="+_beforeDate+";");
-//    }
 }
