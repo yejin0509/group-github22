@@ -32,7 +32,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
     String sdate;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
-        TextView numText;
         ImageView image;
         TextView answerText;
         TextView dateText;
@@ -40,7 +39,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
         public MyViewHolder(View v){
             super(v);
 
-            numText = v.findViewById(R.id.view_num);
             image = v.findViewById(R.id.view_img);
             answerText = v.findViewById(R.id.view_answer);
             dateText = v.findViewById(R.id.view_writeDate);
@@ -65,7 +63,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
                         View view = LayoutInflater.from(mContext).inflate(R.layout.question_input_dialog, null, false);
                         builder.setView(view);
 
-                        TextView edit_num = view.findViewById(R.id.edit_num);
                         EditText edit_answer = view.findViewById(R.id.edit_answer);
                         ImageView edit_img = view.findViewById(R.id.edit_img);
                         Button dialogInput = view.findViewById(R.id.dialogInput);
@@ -76,7 +73,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
                         dialogInput.setText("수정");
 
                         String categoryN = itemArrayList.get(getAdapterPosition()).getCategoryN();
-                        edit_num.setText(String.valueOf(itemArrayList.get(getAdapterPosition()).getNum()));
                         edit_answer.setText(itemArrayList.get(getAdapterPosition()).getAnswer());
                         edit_img.setImageBitmap(itemArrayList.get(getAdapterPosition()).getImage());
 
@@ -145,7 +141,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
-        holder.numText.setText(String.valueOf(itemArrayList.get(position).getNum()));
         holder.image.setImageBitmap((Bitmap) itemArrayList.get(position).getImage());
         holder.answerText.setText(itemArrayList.get(position).getAnswer());
     }

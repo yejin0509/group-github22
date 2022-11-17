@@ -95,8 +95,6 @@ public class Question_input extends AppCompatActivity {
                 View view2 = LayoutInflater.from(Question_input.this).inflate(R.layout.question_input_dialog, null, false);
                 builder.setView(view2);
 
-                edit_num = view2.findViewById(R.id.edit_num);
-                edit_num.setText(String.valueOf(num));
                 edit_answer = view2.findViewById(R.id.edit_answer);
                 edit_img = view2.findViewById(R.id.edit_img);
                 edit_img.setImageResource(R.drawable.img);
@@ -128,8 +126,6 @@ public class Question_input extends AppCompatActivity {
                         dbSuppormer.Insert(edit_categoryN.getText().toString(), imgBit,  edit_answer.getText().toString(), sdate);
 
                         adapter.notifyDataSetChanged();
-
-                        num += 1;
 
                         dialog.dismiss();
                         edit_categoryN.setText(edit_categoryN.getText().toString());
