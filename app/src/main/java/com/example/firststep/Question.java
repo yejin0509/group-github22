@@ -93,8 +93,6 @@ public class Question extends AppCompatActivity{
         //o x 이미지
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
         ImageView correct=(ImageView)findViewById(R.id.qResultCorrect);
-        //다음문제 버튼
-        Button next=(Button)findViewById(R.id.qNext);
 
         //ox 이미지 숨기기
         wrong.setVisibility(View.INVISIBLE);
@@ -103,8 +101,6 @@ public class Question extends AppCompatActivity{
         ch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                next.setVisibility(View.VISIBLE);
-
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch1.getText().toString().trim(),user_answer,sdate);
@@ -136,8 +132,6 @@ public class Question extends AppCompatActivity{
         ch2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                next.setVisibility(View.VISIBLE);
-
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch2.getText().toString().trim(),user_answer,sdate);
@@ -170,8 +164,6 @@ public class Question extends AppCompatActivity{
         ch3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                next.setVisibility(View.VISIBLE);
-
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch3.getText().toString().trim(),user_answer,sdate);
