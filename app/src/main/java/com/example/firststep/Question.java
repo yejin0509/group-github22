@@ -33,21 +33,26 @@ public class Question extends AppCompatActivity{
     RecyclerView recyclerView;
     ArrayList<String> categoryList;
     ArrayList<String> answerList;
-    ArrayList<String> anotherList;
-
+    ArrayList<SuppormerClass> itemArraylist;
+    List only_value = new ArrayList<>();
 
     Intent intent;
     String categoryname, user_answer;
     int total_number = 0;
     int num = 1;
-    List<String> answer_another = new ArrayList<>();
+    int n = 0;
 
+    List<String> answer_another = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question);
         dbSuppormer = new DBSuppormer(Question.this);
+        itemArraylist = new ArrayList<SuppormerClass>();
+
+        itemArraylist = dbSuppormer.getResult(categoryname);
+
 
         Button backButton = (Button) findViewById(R.id.button2);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +63,7 @@ public class Question extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
 
 
         //해당 카테고리 이름 불러오기
@@ -71,7 +77,9 @@ public class Question extends AppCompatActivity{
 
 
         recyclerList();
-        Total_num();
+        total_number = dbSuppormer.getNumberCategoryN(String.valueOf(categoryname));
+        Log.i("의사소통 개수", String.valueOf(total_number));
+
         PrintValues();
 
 
@@ -89,13 +97,14 @@ public class Question extends AppCompatActivity{
         Date mdate = new Date(mNow);
         String sdate = String.valueOf(mdate);
 
-
         //o x 이미지
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
         ImageView correct=(ImageView)findViewById(R.id.qResultCorrect);
+        Button next_number = findViewById(R.id.qNext);
         //ox 이미지 숨기기
         wrong.setVisibility(View.INVISIBLE);
         correct.setVisibility(View.INVISIBLE);
+        next_number.setVisibility(View.INVISIBLE);
 
         ch1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +112,7 @@ public class Question extends AppCompatActivity{
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch1.getText().toString().trim(),user_answer,sdate);
+                next_number.setVisibility(View.VISIBLE);
 
                 if(ch1.getText().toString()== user_answer){
                     ch2.setEnabled(false);
@@ -135,6 +145,7 @@ public class Question extends AppCompatActivity{
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch2.getText().toString().trim(),user_answer,sdate);
+                next_number.setVisibility(View.VISIBLE);
 
                 if(ch2.getText().toString()==user_answer){
                     ch1.setEnabled(false);
@@ -168,6 +179,7 @@ public class Question extends AppCompatActivity{
                 dbUser=new DBUser(Question.this);
                 dbUser.Insert(qnum.getText().toString(),category.getText().toString().trim(), ch1.getText().toString().trim(),ch2.getText().toString().trim(),
                         ch3.getText().toString().trim(),ch3.getText().toString().trim(),user_answer,sdate);
+                next_number.setVisibility(View.VISIBLE);
 
                 if(ch3.getText().toString()==user_answer){
                     ch2.setEnabled(false);
@@ -196,16 +208,34 @@ public class Question extends AppCompatActivity{
             }
         });
 
-        //다음문제
-//        Button qnext = (Button) findViewById(R.id.qNext);
-//        qnext.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), Question.class);
-//                startActivity(intent);
-//            }
-//        });
+
+        // 다음 문제 출력
+        next_number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(n < total_number){
+                    PrintValues();
+                    wrong.setVisibility(View.INVISIBLE);
+                    correct.setVisibility(View.INVISIBLE);
+                    next_number.setVisibility(View.INVISIBLE);
+                    ch1.setEnabled(true);
+                    ch2.setEnabled(true);
+                    ch3.setEnabled(true);
+                    q1.setTextColor(Color.parseColor("#757575"));
+                    q2.setTextColor(Color.parseColor("#757575"));
+                    q3.setTextColor(Color.parseColor("#757575"));
+                    ch1.setTextColor(Color.parseColor("#757575"));
+                    ch2.setTextColor(Color.parseColor("#757575"));
+                    ch3.setTextColor(Color.parseColor("#757575"));
+
+                } else {
+                    Log.i("문제끝", String.valueOf(n));
+                    Intent intent = new Intent(getApplicationContext(), Class_question_list.class);
+                    startActivity(intent);
+                }
+
+            }
+        });
 
     }
 
@@ -216,9 +246,23 @@ public class Question extends AppCompatActivity{
         if(num > total_number)
             num = 0;
 
+
+
+
         //이미지 출력
         List value_1 = dbSuppormer.getValue(categoryname);
+        only_value.add(value_1.get(3));
 
+        for(int i = 0; i<only_value.size(); ++i){
+            while (true){
+                if(only_value.get(i).equals(value_1.get(3))){
+                    value_1 = dbSuppormer.getValue(categoryname);
+                }
+                else{
+                    break;
+                }
+            }
+        }
 
         ImageView image = (ImageView) findViewById(R.id.qimage);
         image.setImageBitmap((Bitmap) value_1.get(2));      //2번이 이미지
@@ -235,7 +279,7 @@ public class Question extends AppCompatActivity{
         choice3.setText((CharSequence) answer_another.get(2));
 
         num++;
-
+        n += 1;
         int id = (int)value_1.get(0);
         while ((int)value_1.get(0) == id){
             value_1 = dbSuppormer.getValue(categoryname);
@@ -284,6 +328,11 @@ public class Question extends AppCompatActivity{
         }
     }
 
+    private void Only_Value(int i, List value_1 ){
+        if(only_value.get(i).equals(value_1.get(3))){
+            value_1 = dbSuppormer.getValue(categoryname);
+        }
+    }
 
     @SuppressLint("LongLogTag")
     private void recyclerList() {
@@ -308,89 +357,11 @@ public class Question extends AppCompatActivity{
             list1.add(String.valueOf(list.get(i)));
         }
 
-        for(int i = 0; i< answer.size(); i++) {
+        for (int i = 0; i < answer.size(); i++) {
             answerList.add(String.valueOf(answer.get(i)));
         }
 
 
-
-
-
-//    @Override
-//    public void onClick(View v) {
-//        TextView ch1=(TextView)findViewById(R.id.choice1);
-//        TextView q1=(TextView)findViewById(R.id.tv_Q1);
-//        TextView ch2=(TextView)findViewById(R.id.choice2);
-//        TextView q2=(TextView)findViewById(R.id.tv_Q2);
-//        TextView ch3=(TextView)findViewById(R.id.choice3);
-//        TextView q3=(TextView)findViewById(R.id.tv_Q3);
-//        switch (v.getId()){
-//            case R.id.choice1:
-//                if(ch1.getText().toString()==ch3.getText().toString()){
-//                    Toast.makeText(getApplicationContext(),"1정답",Toast.LENGTH_SHORT).show();
-//                    q1.setTextColor(Color.parseColor("#568A35"));
-//                    ch1.setTextColor(Color.parseColor("#568A35"));
-//                }else{
-//                    Toast.makeText(getApplicationContext(),"1오답",Toast.LENGTH_SHORT).show();
-//                    q1.setTextColor(Color.parseColor("#ff0000"));
-//                    ch1.setTextColor(Color.parseColor("#ff0000"));
-//                }
-////                Toast.makeText(getApplicationContext(),"1텍스트가 눌림",Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.choice2:
-//                if(ch2.getText().toString()==ch3.getText().toString()){
-//                    Toast.makeText(getApplicationContext(),"2정답",Toast.LENGTH_SHORT).show();
-//                    q2.setTextColor(Color.parseColor("#568A35"));
-//                    ch2.setTextColor(Color.parseColor("#568A35"));
-//                }else{
-//                    Toast.makeText(getApplicationContext(),"2오답",Toast.LENGTH_SHORT).show();
-//                    q2.setTextColor(Color.parseColor("#ff0000"));
-//                    ch2.setTextColor(Color.parseColor("#ff0000"));
-//                }
-////                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.choice3:
-//                if(ch3.getText().toString()==ch3.getText().toString()){
-//                    Toast.makeText(getApplicationContext(),"3정답",Toast.LENGTH_SHORT).show();
-//                    q3.setTextColor(Color.parseColor("#568A35"));
-//                    ch3.setTextColor(Color.parseColor("#568A35"));
-//                }else{
-//                    Toast.makeText(getApplicationContext(),"3오답",Toast.LENGTH_SHORT).show();
-//                    q3.setTextColor(Color.parseColor("#ff0000"));
-//                    ch3.setTextColor(Color.parseColor("#ff0000"));
-//                }
-////                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
-//                break;
-//        }
-//    }
     }
-}
 
-//package com.example.firststep;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.ImageView;
-//
-//public class Question extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.question);
-//
-//        ImageView Button = (ImageView) findViewById(R.id.imageView2);
-//        Button.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), Question_result.class);
-//                startActivity(intent);
-//            }
-//        });
-//    }
-//}
+}
