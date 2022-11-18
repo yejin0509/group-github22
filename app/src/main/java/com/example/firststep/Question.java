@@ -84,20 +84,9 @@ public class Question extends AppCompatActivity{
 
 
         //중복 방지를 위한 확인.
-        questionlist = dbSuppormer.getResult(categoryname);
-
-        for(int i = 0; i < questionlist.size(); i++){
-            Log.i("리스트 확인(답변)",questionlist.get(i).getAnswer());
-            Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
-            numList.add(String.valueOf(i));
-        }
-        //문제 랜덤으로 돌림
-        Log.i("숫자", String.valueOf(numList));
-        Collections.shuffle(numList);
-        Log.i("숫자", String.valueOf(numList));
-
-
+        OverlapCheck();
         recyclerList();
+
         //문제 수
         total_number = dbSuppormer.getNumberCategoryN(String.valueOf(categoryname));
         Log.i("문제 개수", String.valueOf(total_number));
@@ -119,11 +108,11 @@ public class Question extends AppCompatActivity{
         Date mdate = new Date(mNow);
         String sdate = String.valueOf(mdate);
 
-        //o x 이미지
+        //o x 이미지 및 next 버튼
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
         ImageView correct=(ImageView)findViewById(R.id.qResultCorrect);
         Button next_number = findViewById(R.id.qNext);
-        //ox 이미지 숨기기
+        //ox 이미지 및 next 버튼 숨기기
         wrong.setVisibility(View.INVISIBLE);
         correct.setVisibility(View.INVISIBLE);
         next_number.setVisibility(View.INVISIBLE);
@@ -136,9 +125,11 @@ public class Question extends AppCompatActivity{
                         ch3.getText().toString().trim(),ch1.getText().toString().trim(),user_answer,sdate);
                 next_number.setVisibility(View.VISIBLE);
 
+                ch1.setEnabled(false);
+                ch2.setEnabled(false);
+                ch3.setEnabled(false);
+
                 if(ch1.getText().toString()== user_answer){
-                    ch2.setEnabled(false);
-                    ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q1.setTextColor(Color.parseColor("#568A35"));
                     ch1.setTextColor(Color.parseColor("#568A35"));
@@ -147,19 +138,16 @@ public class Question extends AppCompatActivity{
                     q1.setTextColor(Color.parseColor("#ff0000"));
                     ch1.setTextColor(Color.parseColor("#ff0000"));
                     if(ch2.getText().toString()== user_answer){
-                        ch3.setEnabled(false);
                         q2.setTextColor(Color.parseColor("#568A35"));
                         ch2.setTextColor(Color.parseColor("#568A35"));
                     }
                     else if(ch3.getText().toString()== user_answer){
-                        ch2.setEnabled(false);
                         q3.setTextColor(Color.parseColor("#568A35"));
                         ch3.setTextColor(Color.parseColor("#568A35"));
                     }
 
                 }
 
-//                Toast.makeText(getApplicationContext(),sdate,Toast.LENGTH_SHORT).show();
             }
         });
         ch2.setOnClickListener(new View.OnClickListener() {
@@ -170,31 +158,28 @@ public class Question extends AppCompatActivity{
                         ch3.getText().toString().trim(),ch2.getText().toString().trim(),user_answer,sdate);
                 next_number.setVisibility(View.VISIBLE);
 
+                ch1.setEnabled(false);
+                ch2.setEnabled(false);
+                ch3.setEnabled(false);
+
                 if(ch2.getText().toString()==user_answer){
-                    ch1.setEnabled(false);
-                    ch3.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#568A35"));
                     ch2.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    ch1.setEnabled(false);
-                    ch3.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q2.setTextColor(Color.parseColor("#ff0000"));
                     ch2.setTextColor(Color.parseColor("#ff0000"));
                     if(ch1.getText().toString()== user_answer){
-                        ch3.setEnabled(false);
                         q1.setTextColor(Color.parseColor("#568A35"));
                         ch1.setTextColor(Color.parseColor("#568A35"));
                     }
                     else if(ch3.getText().toString()== user_answer){
-                        ch1.setEnabled(false);
                         q3.setTextColor(Color.parseColor("#568A35"));
                         ch3.setTextColor(Color.parseColor("#568A35"));
                     }
 
                 }
-//                Toast.makeText(getApplicationContext(),"2텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
         });
         ch3.setOnClickListener(new View.OnClickListener() {
@@ -205,31 +190,28 @@ public class Question extends AppCompatActivity{
                         ch3.getText().toString().trim(),ch3.getText().toString().trim(),user_answer,sdate);
                 next_number.setVisibility(View.VISIBLE);
 
+                ch1.setEnabled(false);
+                ch2.setEnabled(false);
+                ch3.setEnabled(false);
+
                 if(ch3.getText().toString()==user_answer){
-                    ch2.setEnabled(false);
-                    ch1.setEnabled(false);
                     correct.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#568A35"));
                     ch3.setTextColor(Color.parseColor("#568A35"));
                 }else{
-                    ch2.setEnabled(false);
-                    ch1.setEnabled(false);
                     wrong.setVisibility(View.VISIBLE);
                     q3.setTextColor(Color.parseColor("#ff0000"));
                     ch3.setTextColor(Color.parseColor("#ff0000"));
                     if(ch2.getText().toString()== user_answer){
-                        ch3.setEnabled(false);
                         q2.setTextColor(Color.parseColor("#568A35"));
                         ch2.setTextColor(Color.parseColor("#568A35"));
                     }
                     else if(ch1.getText().toString()== user_answer){
-                        ch2.setEnabled(false);
                         q1.setTextColor(Color.parseColor("#568A35"));
                         ch1.setTextColor(Color.parseColor("#568A35"));
                     }
 
                 }
-//                Toast.makeText(getApplicationContext(),"3텍스트가 눌림",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -335,7 +317,21 @@ public class Question extends AppCompatActivity{
         }
     }
 
+    //중복 체크를 위함.
+    private void OverlapCheck(){
+        questionlist = dbSuppormer.getResult(categoryname);
 
+        for(int i = 0; i < questionlist.size(); i++){
+            Log.i("리스트 확인(답변)",questionlist.get(i).getAnswer());
+            Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
+            numList.add(String.valueOf(i));
+        }
+
+        //문제 랜덤으로 돌림
+        Log.i("숫자", String.valueOf(numList));
+        Collections.shuffle(numList);
+        Log.i("숫자", String.valueOf(numList));
+    }
 
     @SuppressLint("LongLogTag")
     private void recyclerList() {
