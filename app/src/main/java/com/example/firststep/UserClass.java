@@ -3,7 +3,6 @@ package com.example.firststep;
 import android.graphics.Bitmap;
 
 public class UserClass {
-    private int id;
     private String QNumber;
     private String categoryN;
     private String choice1;
@@ -22,14 +21,6 @@ public class UserClass {
         UserA = userA;
         ResultA = resultA;
         this.writeDate = writeDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getQNumber() {

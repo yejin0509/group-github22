@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -104,9 +105,9 @@ public class Question extends AppCompatActivity{
 
         TextView qnum=(TextView)findViewById(R.id.qNumber);
 
-        long mNow = System.currentTimeMillis();
-        Date mdate = new Date(mNow);
-        String sdate = String.valueOf(mdate);
+        Date nowDate=new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+        String sdate=dateFormat.format(nowDate);
 
         //o x 이미지 및 next 버튼
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);

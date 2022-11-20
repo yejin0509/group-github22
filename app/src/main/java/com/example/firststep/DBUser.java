@@ -22,8 +22,8 @@ public class DBUser extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS UserTable (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "QNumber TEXT NOT NULL, categoryN TEXT NOT NULL, choice1 TEXT NOT NULL," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS UserTable (QNumber TEXT NOT NULL," +
+                "categoryN TEXT NOT NULL, choice1 TEXT NOT NULL," +
                 "choice2 TEXT NOT NULL, choice3 TEXT NOT NULL, userA TEXT NOT NULL," +
                 "ResultA TEXT NOT NULL, writeDate TEXT NOT NULL)");
     }
