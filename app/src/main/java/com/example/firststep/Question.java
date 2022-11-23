@@ -242,6 +242,29 @@ public class Question extends AppCompatActivity{
     private void PrintValues(){
         //number 출력
         TextView number = (TextView) findViewById(R.id.qNumber);
+
+        ArrayList<SuppormerClass> questionlist = new ArrayList<SuppormerClass>();
+
+        questionlist = dbSuppormer.getResult(categoryname);
+
+        ArrayList<String> numList = new ArrayList<String>();
+
+        for(int i = 0; i < questionlist.size(); i++){
+            Log.i("리스트 확인(답변)",questionlist.get(i).getAnswer());
+            Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
+            numList.add(String.valueOf(i));
+        }
+        Log.i("숫자", String.valueOf(numList));
+        Collections.shuffle(numList);
+        Log.i("숫자", String.valueOf(numList));
+
+        for(int i = 0; i < numList.size(); i++){
+            Log.i("랜덤 리스트 확인(답변)",questionlist.get(Integer.parseInt(numList.get(i))).getAnswer());
+            Log.i("랜덤 리스트 확인(이미지)",String.valueOf(questionlist.get(Integer.parseInt(numList.get(i))).getImage()));
+        }
+
+
+
         number.setText(String.valueOf(num)+".");
         if(num > total_number)
             num = 0;
