@@ -67,6 +67,7 @@ public class Activity_study_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -86,6 +87,7 @@ public class Activity_study_1 extends AppCompatActivity {
                 } else {
                     Log.i("문제끝", String.valueOf(n));
                     Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
             }
@@ -106,6 +108,7 @@ public class Activity_study_1 extends AppCompatActivity {
                     Log.i("답변", String.valueOf(n)+ itemArraylist.get(n).getAnswer());
                     editTextNumber.setText(itemArraylist.get(n).getAnswer());
                     imageView2.setImageBitmap(itemArraylist.get(n).getImage());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 }
             }
         });

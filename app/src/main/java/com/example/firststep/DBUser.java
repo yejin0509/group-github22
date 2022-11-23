@@ -2,14 +2,18 @@ package com.example.firststep;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBUser extends SQLiteOpenHelper {
     Context context;
@@ -22,8 +26,8 @@ public class DBUser extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS UserTable (id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "QNumber TEXT NOT NULL, categoryN TEXT NOT NULL, choice1 TEXT NOT NULL," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS UserTable (QNumber TEXT NOT NULL," +
+                "categoryN TEXT NOT NULL, choice1 TEXT NOT NULL," +
                 "choice2 TEXT NOT NULL, choice3 TEXT NOT NULL, userA TEXT NOT NULL," +
                 "ResultA TEXT NOT NULL, writeDate TEXT NOT NULL)");
     }
@@ -51,5 +55,76 @@ public class DBUser extends SQLiteOpenHelper {
 
         mDB.close();
     }
+
+
+    public List getResultCategoryN(){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getReadableDatabase();
+        List mList = new ArrayList();
+
+        Cursor cursor = db.rawQuery("SELECT DISTINCT categoryN FROM Qtable ", null);
+        while(cursor.moveToNext()){
+
+            mList.add(0,cursor.getString(0));
+
+        }
+        return mList;
+    }
+
+    public ArrayList<ScoreResult> getResult(){
+        ArrayList<ScoreResult> scoreL=new ArrayList<>();
+        SQLiteDatabase db=getReadableDatabase();
+        Cursor cursor=db.rawQuery("SELECT categoryN, count(userA) as correct, writeDate FROM UserTable WHERE userA=ResultA GROUP by writeDate;",null);
+        if(cursor.getCount()!=0){
+            while(cursor.moveToNext()){
+                String title=cursor.getString(cursor.getColumnIndex("categoryN"));
+                int count=cursor.getInt(cursor.getColumnIndex("correct"));
+                String writeDate=cursor.getString(cursor.getColumnIndex("writeDate"));
+
+                ScoreResult result=new ScoreResult();
+                result.setTitle(title);
+                result.setCount(count);
+                result.setWriteDate(writeDate);
+                scoreL.add(result);
+            }
+        }
+        cursor.close();
+        return scoreL;
+    }
+
+
+//    public ArrayList<String> getCategory(){
+//        ArrayList<String> categoryL=new ArrayList<>();
+//        // 읽기가 가능하게 DB 열기
+//        SQLiteDatabase db = getWritableDatabase();
+////        List mList = new ArrayList();
+//
+//        Cursor cursor = db.rawQuery("SELECT categoryN FROM UserTable group by writeDate;", null);
+//        if(cursor.getCount() != 0){
+//            //무조건 조회 데이터 있을 때 내부 수행
+//            while(cursor.moveToNext()){
+//                categoryL.add(0,cursor.getString(0));
+////                String title=cursor.getString(cursor.getColumnIndex("categoryN"));
+////                String score=cursor.getString(cursor.getColumnIndex("correct"));
+////                String writeDate=cursor.getString(cursor.getColumnIndex("writeDate"));
+////
+////                UserClass history=new UserClass();
+////                history.setCategoryN(title);
+////                history.setScore(score);
+////                history.setWriteDate(writeDate);
+////                hList.add(history);
+//            }
+//        }
+//        cursor.close();
+//
+//        return categoryL;
+////        while(cursor.moveToNext()){
+////
+////            Log.i("카테고리 ", cursor.getString(0));
+////            mList.add(0,cursor.getString(0));
+////
+////        }
+////        return mList;
+//    }
 
 }

@@ -3,7 +3,6 @@ package com.example.firststep;
 import android.graphics.Bitmap;
 
 public class UserClass {
-    private int id;
     private String QNumber;
     private String categoryN;
     private String choice1;
@@ -12,24 +11,18 @@ public class UserClass {
     private String UserA;
     private String ResultA;
     private String writeDate;
+    private String score;
 
-    public UserClass(String QNumber, String categoryN, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate) {
-        this.QNumber = QNumber;
-        this.categoryN = categoryN;
-        this.choice1 = choice1;
-        this.choice2 = choice2;
-        this.choice3 = choice3;
-        UserA = userA;
-        ResultA = resultA;
-        this.writeDate = writeDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public UserClass() {
+//        String QNumber, String categoryN, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate
+//        this.QNumber = QNumber;
+//        this.categoryN = categoryN;
+//        this.choice1 = choice1;
+//        this.choice2 = choice2;
+//        this.choice3 = choice3;
+//        UserA = userA;
+//        ResultA = resultA;
+//        this.writeDate = writeDate;
     }
 
     public String getQNumber() {
@@ -96,4 +89,6 @@ public class UserClass {
     public void setWriteDate(String writeDate) {
         this.writeDate = writeDate;
     }
+
+    public void setScore(String score) { this.score=score; }
 }
