@@ -106,7 +106,7 @@ public class Question extends AppCompatActivity{
         TextView qnum=(TextView)findViewById(R.id.qNumber);
 
         Date nowDate=new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy.MM.dd");
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yy.MM.dd HH:mm:ss");
         String sdate=dateFormat.format(nowDate);
 
         //o x 이미지 및 next 버튼
