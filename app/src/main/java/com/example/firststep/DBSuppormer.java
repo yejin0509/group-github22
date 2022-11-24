@@ -233,7 +233,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
     }
 
 
-    //image를 위한 리스트
+    //Question_result image를 위함.
     public List getImageList(String categoryN){
         SQLiteDatabase db = getWritableDatabase();
         List mList = new ArrayList();

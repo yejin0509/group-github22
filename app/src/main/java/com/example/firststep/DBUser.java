@@ -93,7 +93,7 @@ public class DBUser extends SQLiteOpenHelper {
         return scoreL;
     }*/
 
-
+    //Question_result 결과를 위함.
     public ArrayList<UserClass> getResultList(String categoryN, String dateN){
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
@@ -104,17 +104,6 @@ public class DBUser extends SQLiteOpenHelper {
 
             itemArrayList.add(new UserClass(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)
                     ,cursor.getString(5),cursor.getString(6),cursor.getString(7)));
-
-            /*userClass.setQNumber(cursor.getString(0));
-            userClass.setCategoryN(cursor.getString(1));
-            userClass.setChoice1(cursor.getString(2));
-            userClass.setChoice2(cursor.getString(3));
-            userClass.setChoice3(cursor.getString(4));
-            userClass.setUserA(cursor.getString(5));
-            userClass.setResultA(cursor.getString(6));
-            userClass.setWriteDate(cursor.getString(7));
-
-            itemArrayList.add(userClass);*/
         }
         return itemArrayList;
 
