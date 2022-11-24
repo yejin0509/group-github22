@@ -58,15 +58,15 @@ public class DBUser extends SQLiteOpenHelper {
     }
 
 
-    public List getResultCategoryN(){
+    public List getCount(){
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
         List mList = new ArrayList();
 
-        Cursor cursor = db.rawQuery("SELECT DISTINCT categoryN FROM Qtable ", null);
+        Cursor cursor = db.rawQuery("SELECT count(*) as count from UserTable GROUP by writeDate;", null);
         while(cursor.moveToNext()){
 
-            mList.add(0,cursor.getString(0));
+            mList.add(0,cursor.getInt(0));
 
         }
         return mList;
@@ -79,12 +79,12 @@ public class DBUser extends SQLiteOpenHelper {
         if(cursor.getCount()!=0){
             while(cursor.moveToNext()){
                 String title=cursor.getString(cursor.getColumnIndex("categoryN"));
-                int count=cursor.getInt(cursor.getColumnIndex("correct"));
+                int correct=cursor.getInt(cursor.getColumnIndex("correct"));
                 String writeDate=cursor.getString(cursor.getColumnIndex("writeDate"));
 
                 ScoreResult result=new ScoreResult();
                 result.setTitle(title);
-                result.setCount(count);
+                result.setCorrect(correct);
                 result.setWriteDate(writeDate);
                 scoreL.add(result);
             }

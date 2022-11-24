@@ -21,7 +21,7 @@ public class Score extends AppCompatActivity {
     private DBUser dbUser;
     private RecyclerView recyclerView;
     private ArrayList<ScoreResult> scoreL;
-    private ArrayList<String> categoryL;
+    private ArrayList<String> countL;
     private Score_ListAdapter adapter;
 
     @Override
@@ -87,7 +87,7 @@ public class Score extends AppCompatActivity {
     }
 //    저장된 db 가져오기
     private void loadRecentDB(){
-        /*scoreL=dbUser.getResult(); --해제*/
+        scoreL=dbUser.getResult();
         if(adapter==null){
             adapter=new Score_ListAdapter(scoreL, this);
             recyclerView.setHasFixedSize(true);

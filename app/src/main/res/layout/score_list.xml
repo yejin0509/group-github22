@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tv1"
-            android:layout_width="wrap_content"
+            android:layout_width="38dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="center"
@@ -48,10 +48,10 @@
 
         <TextView
             android:id="@+id/tv2"
-            android:layout_width="wrap_content"
+            android:layout_width="38dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="8sp"
             android:gravity="center"
             android:text="점수 : "
             android:textColor="#472D1C"
@@ -59,19 +59,39 @@
             android:textStyle="bold" />
         <TextView
             android:id="@+id/score"
-            android:layout_width="35dp"
+            android:layout_width="19dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="15"
+            android:textColor="#472D1C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/slash"
+            android:layout_width="5dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="left"
-            android:text="n/m"
+            android:text="/"
+            android:textColor="#472D1C"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="19dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:gravity="center"
+            android:text="20"
             android:textColor="#472D1C"
             android:textSize="16sp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/tv3"
-            android:layout_width="wrap_content"
+            android:layout_width="38dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
+            android:layout_marginLeft="13sp"
             android:layout_marginTop="18dp"
             android:gravity="center"
             android:text="날짜 : "
