@@ -21,7 +21,7 @@ public class Score extends AppCompatActivity {
     private DBUser dbUser;
     private RecyclerView recyclerView;
     private ArrayList<ScoreResult> scoreL;
-    private ArrayList<String> categoryL;
+    private ArrayList<String> countL;
     private Score_ListAdapter adapter;
 
     @Override
@@ -52,67 +52,35 @@ public class Score extends AppCompatActivity {
         });
 
         setInit();
-//        recyclerList();
     }
 
-//    @SuppressLint("LongLogTag")
-//    private void recyclerList() {
-//        // recycler view
-//        recyclerView = findViewById(R.id.history_score);
-//        // List item 생성
-//        categoryL = new ArrayList<String>();
-//
-//        List list = dbUser.getResultCategoryN();
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            categoryL.add(String.valueOf(list.get(i)));
-//        }
-//
-//        // adapter 추가 및 layout manager 추가
-//        adapter = new Score_ListAdapter( this,categoryL);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(adapter);
-//
-//
-//    }
+
     //기본틀
     private void setInit(){
         dbUser=new DBUser(this);
         recyclerView=findViewById(R.id.history_score);
         scoreL=new ArrayList<>();
+        countL=new ArrayList<String>();
 
         loadRecentDB();
 
         recyclerView.smoothScrollToPosition(0);
     }
+
 //    저장된 db 가져오기
     private void loadRecentDB(){
         scoreL=dbUser.getResult();
+        List list=dbUser.getCount();
+//        Log.i("확인:", String.valueOf(list));
+        for(int i=list.size()-1;i>=0;i--){
+            countL.add(String.valueOf(list.get(i)));
+        }
+
         if(adapter==null){
-            adapter=new Score_ListAdapter(scoreL, this);
+            adapter=new Score_ListAdapter(scoreL,countL, this);
             recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(adapter);
         }
     }
 
-//     리사이클러뷰, 카드뷰 사용
-//    public void recyclerList(){
-//        // recycler view
-//        recyclerView = findViewById(R.id.history_score);
-//        // List item 생성
-//        hList = new ArrayList<String>();
-//
-//        List list = dbUser.getResult();
-//
-//        for(int i = 0; i<list.size(); i++){
-//            hList.add(String.valueOf(list.get(i)));
-//        }
-//
-//
-//
-//        // adapter 추가 및 layout manager 추가
-//        adapter = new Class_listAdapter(this, hList);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(adapter);
-//    }
 }
