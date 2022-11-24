@@ -72,7 +72,7 @@ public class DBUser extends SQLiteOpenHelper {
         return mList;
     }
 
-    /*public ArrayList<ScoreResult> getResult(){--해제
+    public ArrayList<ScoreResult> getResult(){
         ArrayList<ScoreResult> scoreL=new ArrayList<>();
         SQLiteDatabase db=getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT categoryN, count(userA) as correct, writeDate FROM UserTable WHERE userA=ResultA GROUP by writeDate;",null);
@@ -91,7 +91,7 @@ public class DBUser extends SQLiteOpenHelper {
         }
         cursor.close();
         return scoreL;
-    }*/
+    }
 
     //Question_result 결과를 위함.
     public ArrayList<UserClass> getResultList(String categoryN, String dateN){

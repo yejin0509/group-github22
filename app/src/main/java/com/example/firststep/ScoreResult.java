@@ -2,7 +2,6 @@ package com.example.firststep;
 
 public class ScoreResult {
     private String title;
-//    private int count;
     private String writeDate;
     private int correct;
 

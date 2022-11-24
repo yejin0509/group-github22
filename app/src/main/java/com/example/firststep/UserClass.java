@@ -9,7 +9,6 @@ public class UserClass {
     private String UserA;
     private String ResultA;
     private String writeDate;
-    private String score;
     public UserClass(){
 
     }
@@ -65,7 +64,6 @@ public class UserClass {
         this.choice3 = choice3;
     }
 
-
     public String getUserA() {
         return UserA;
     }
@@ -90,5 +88,4 @@ public class UserClass {
         this.writeDate = writeDate;
     }
 
-    public void setScore(String score) { this.score=score; }
 }

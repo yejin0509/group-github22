@@ -80,6 +80,7 @@ public class Score extends AppCompatActivity {
         dbUser=new DBUser(this);
         recyclerView=findViewById(R.id.history_score);
         scoreL=new ArrayList<>();
+        countL=new ArrayList<>();
 
         loadRecentDB();
 
@@ -88,8 +89,14 @@ public class Score extends AppCompatActivity {
 //    저장된 db 가져오기
     private void loadRecentDB(){
         scoreL=dbUser.getResult();
+        List list=dbUser.getCount();
+    //        Log.i("확인:", String.valueOf(list));
+        for(int i=list.size()-1;i>=0;i--){
+            countL.add(String.valueOf(list.get(i)));
+        }
+
         if(adapter==null){
-            adapter=new Score_ListAdapter(scoreL, this);
+            adapter=new Score_ListAdapter(scoreL,countL, this);
             recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(adapter);
         }
