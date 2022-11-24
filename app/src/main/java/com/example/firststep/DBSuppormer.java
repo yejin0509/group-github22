@@ -232,23 +232,6 @@ public class DBSuppormer extends SQLiteOpenHelper {
         return mList;
     }
 
-
-    //Question_result image를 위함.
-    public List getImageList(String categoryN){
-        SQLiteDatabase db = getWritableDatabase();
-        List mList = new ArrayList();
-        Cursor cursor = db.rawQuery("SELECT answer,image FROM Qtable WHERE categoryN ='"+ categoryN +"' ", null);
-        while(cursor.moveToNext()){
-            byte[] image = cursor.getBlob(1);
-            Bitmap bm = BitmapFactory.decodeByteArray(image, 0, image.length);
-            mList.add(0,cursor.getString(0));
-            mList.add(1,bm);
-
-
-        }
-        return mList;
-    }
-
     // 카테고리로 그 모든 값 삭제
     public void deleteValue(String categoryN){
         SQLiteDatabase mDB=getWritableDatabase();

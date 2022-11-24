@@ -20,7 +20,7 @@ public class Question_result extends AppCompatActivity {
     DBUser dbUser;
 
     ArrayList<UserClass> questionList = new ArrayList<UserClass>();     //결과 리스트
-    List ImageList = new ArrayList<>();                                 //이미지 리스트
+    ArrayList<SuppormerClass> ImageList = new ArrayList<SuppormerClass>();                                 //이미지 리스트
 
     ArrayList<String> numList = new ArrayList<String>();
     int test = 0;
@@ -52,7 +52,7 @@ public class Question_result extends AppCompatActivity {
 
         //결과와 이미지를 불러옴
         questionList = dbUser.getResultList(getCategoryName, getDate);
-        ImageList = dbSuppormer.getImageList(getCategoryName);
+        ImageList = dbSuppormer.getResult(getCategoryName);
 
         for(int i = 0; i < questionList.size(); i++){
             numList.add(String.valueOf(i));
@@ -76,9 +76,10 @@ public class Question_result extends AppCompatActivity {
 
         //이미지 출력
         for(int i = 0; i < ImageList.size(); ++i){
-            if (ImageList.get(i).equals(answer)) {
+            String ImageAnswer = ImageList.get(Integer.parseInt(numList.get(i))).getAnswer();
+            if (ImageAnswer.equals(answer)) {
                 ImageView image = (ImageView) findViewById(R.id.imageView1);
-                image.setImageBitmap((Bitmap) ImageList.get(1));
+                image.setImageBitmap(ImageList.get(Integer.parseInt(numList.get(i))).getImage());
             }
         }
 
