@@ -87,7 +87,7 @@ public class Score extends AppCompatActivity {
     }
 //    저장된 db 가져오기
     private void loadRecentDB(){
-        scoreL=dbUser.getResult();
+        /*scoreL=dbUser.getResult(); --해제*/
         if(adapter==null){
             adapter=new Score_ListAdapter(scoreL, this);
             recyclerView.setHasFixedSize(true);

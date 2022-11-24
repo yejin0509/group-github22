@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -71,7 +72,7 @@ public class DBUser extends SQLiteOpenHelper {
         return mList;
     }
 
-    public ArrayList<ScoreResult> getResult(){
+    /*public ArrayList<ScoreResult> getResult(){--해제
         ArrayList<ScoreResult> scoreL=new ArrayList<>();
         SQLiteDatabase db=getReadableDatabase();
         Cursor cursor=db.rawQuery("SELECT categoryN, count(userA) as correct, writeDate FROM UserTable WHERE userA=ResultA GROUP by writeDate;",null);
@@ -90,8 +91,34 @@ public class DBUser extends SQLiteOpenHelper {
         }
         cursor.close();
         return scoreL;
-    }
+    }*/
 
+
+    public ArrayList<UserClass> getResultList(String categoryN, String dateN){
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getWritableDatabase();
+        ArrayList<UserClass> itemArrayList = new ArrayList<UserClass>();
+        UserClass userClass = new UserClass();
+        Cursor cursor = db.rawQuery("SELECT QNumber, categoryN, choice1,choice2,choice3,userA, ResultA,writeDate FROM Usertable WHERE categoryN = '"+ categoryN +"' AND writeDate= '"+ dateN +"' ", null);
+        while(cursor.moveToNext()){
+
+            itemArrayList.add(new UserClass(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4)
+                    ,cursor.getString(5),cursor.getString(6),cursor.getString(7)));
+
+            /*userClass.setQNumber(cursor.getString(0));
+            userClass.setCategoryN(cursor.getString(1));
+            userClass.setChoice1(cursor.getString(2));
+            userClass.setChoice2(cursor.getString(3));
+            userClass.setChoice3(cursor.getString(4));
+            userClass.setUserA(cursor.getString(5));
+            userClass.setResultA(cursor.getString(6));
+            userClass.setWriteDate(cursor.getString(7));
+
+            itemArrayList.add(userClass);*/
+        }
+        return itemArrayList;
+
+    }
 
 //    public ArrayList<String> getCategory(){
 //        ArrayList<String> categoryL=new ArrayList<>();

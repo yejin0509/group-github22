@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -105,9 +104,9 @@ public class Question extends AppCompatActivity{
 
         TextView qnum=(TextView)findViewById(R.id.qNumber);
 
-        Date nowDate=new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yy.MM.dd HH:mm:ss");
-        String sdate=dateFormat.format(nowDate);
+        long mNow = System.currentTimeMillis();
+        Date mdate = new Date(mNow);
+        String sdate = String.valueOf(mdate);
 
         //o x 이미지 및 next 버튼
         ImageView wrong=(ImageView)findViewById(R.id.qResultWrong);
@@ -238,7 +237,9 @@ public class Question extends AppCompatActivity{
 
                 } else {
                     Log.i("문제끝", String.valueOf(n));
-                    Intent intent = new Intent(getApplicationContext(), Class_question_list.class);
+                    Intent intent = new Intent(getApplicationContext(), Question_result.class);
+                    intent.putExtra("CategoryName",(String)categoryname);
+                    intent.putExtra("date",sdate);
                     startActivity(intent);
                 }
 
@@ -250,29 +251,6 @@ public class Question extends AppCompatActivity{
     private void PrintValues(){
         //number 출력
         TextView number = (TextView) findViewById(R.id.qNumber);
-
-        ArrayList<SuppormerClass> questionlist = new ArrayList<SuppormerClass>();
-
-        questionlist = dbSuppormer.getResult(categoryname);
-
-        ArrayList<String> numList = new ArrayList<String>();
-
-        for(int i = 0; i < questionlist.size(); i++){
-            Log.i("리스트 확인(답변)",questionlist.get(i).getAnswer());
-            Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
-            numList.add(String.valueOf(i));
-        }
-        Log.i("숫자", String.valueOf(numList));
-        Collections.shuffle(numList);
-        Log.i("숫자", String.valueOf(numList));
-
-        for(int i = 0; i < numList.size(); i++){
-            Log.i("랜덤 리스트 확인(답변)",questionlist.get(Integer.parseInt(numList.get(i))).getAnswer());
-            Log.i("랜덤 리스트 확인(이미지)",String.valueOf(questionlist.get(Integer.parseInt(numList.get(i))).getImage()));
-        }
-
-
-
         number.setText(String.valueOf(num)+".");
         if(num > total_number)
             num = 0;
@@ -346,8 +324,7 @@ public class Question extends AppCompatActivity{
         questionlist = dbSuppormer.getResult(categoryname);
 
         for(int i = 0; i < questionlist.size(); i++){
-            Log.i("리스트 확인(답변)",questionlist.get(i).getAnswer());
-            Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
+             Log.i("리스트 확인(이미지)",String.valueOf(questionlist.get(i).getImage()));
             numList.add(String.valueOf(i));
         }
 

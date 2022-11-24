@@ -1,7 +1,5 @@
 package com.example.firststep;
 
-import android.graphics.Bitmap;
-
 public class UserClass {
     private String QNumber;
     private String categoryN;
@@ -12,17 +10,19 @@ public class UserClass {
     private String ResultA;
     private String writeDate;
     private String score;
+    public UserClass(){
 
-    public UserClass() {
-//        String QNumber, String categoryN, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate
-//        this.QNumber = QNumber;
-//        this.categoryN = categoryN;
-//        this.choice1 = choice1;
-//        this.choice2 = choice2;
-//        this.choice3 = choice3;
-//        UserA = userA;
-//        ResultA = resultA;
-//        this.writeDate = writeDate;
+    }
+    public UserClass(String QNumber, String categoryN, String choice1, String choice2, String choice3, String userA, String resultA, String writeDate) {
+
+        this.QNumber = QNumber;
+        this.categoryN = categoryN;
+        this.choice1 = choice1;
+        this.choice2 = choice2;
+        this.choice3 = choice3;
+        UserA = userA;
+        ResultA = resultA;
+        this.writeDate = writeDate;
     }
 
     public String getQNumber() {

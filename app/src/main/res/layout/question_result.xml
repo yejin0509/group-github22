@@ -59,16 +59,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <!--정답 오답 사진-->
-                <ImageView
-                    android:id="@+id/resultImage1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    app:srcCompat="@drawable/closelarge" />
+
                 <!--문제 번호-->
                 <TextView
-                    android:id="@+id/text1"
+                    android:id="@+id/number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@+id/resultImage1"
@@ -81,6 +75,22 @@
                     android:letterSpacing="0.04"
                     android:text="1."
                     android:textSize="30sp" />
+
+                <ImageView
+                    android:id="@+id/qResultWrong2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/closelarge" />
+
+                <ImageView
+                    android:id="@+id/qResultCorrect2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/correctlarge" />
             </RelativeLayout>
             <!--문제 사진-->
             <ImageView
@@ -89,45 +99,68 @@
                 android:layout_height="194dp"
                 android:src="@drawable/pancil" />
             <!--문제-->
-            <EditText
-                android:id="@+id/Number1_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="9"
-                android:inputType="number"
-                android:drawableEnd="@drawable/close"
-                android:textColor="#ff0000"
-                android:text="1. 웃다"
-                android:textSize="20sp"
-                android:layout_marginTop="70dp"
-                android:layout_marginStart="95dp"
-                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="227dp">
+                <!--문제-->
 
-            <EditText
-                android:id="@+id/Number1_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="9"
-                android:inputType="number"
-                android:text="2. 울다"
-                android:textSize="20sp"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="95dp"
-                />
+                <TextView
+                    android:id="@+id/tv_Q1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="50dp"
+                    android:text="1."
+                    android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/Number1_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="9"
-                android:inputType="number"
-                android:drawableEnd="@drawable/correct"
-                android:textColor="#568A35"
-                android:text="3. 화내다"
-                android:textSize="20sp"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="95dp"
-                />
+                <TextView
+                    android:id="@+id/choice1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="155dp"
+                    android:layout_marginTop="50dp"
+                    android:text="웃다"
+                    android:textColor="#757575"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_Q2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="100dp"
+                    android:text="2."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/choice2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="155dp"
+                    android:layout_marginTop="100dp"
+                    android:text="울다"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_Q3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="150dp"
+                    android:text="3."
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/choice3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="155dp"
+                    android:layout_marginTop="150dp"
+                    android:text="화내다"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
             <!--2번 시작-->
             <RelativeLayout
                 android:layout_width="wrap_content"
