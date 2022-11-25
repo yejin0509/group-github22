@@ -33,7 +33,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS Qtable (id INTEGER PRIMARY KEY AUTOINCREMENT, categoryN TEXT NOT NULL," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS Qtable (id INTEGER, categoryN TEXT NOT NULL," +
                 "image blob NOT NULL, answer TEXT NOT NULL, writeDate TEXT NOT NULL)");
     }
 

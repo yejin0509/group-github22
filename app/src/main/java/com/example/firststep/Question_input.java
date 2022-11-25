@@ -36,7 +36,6 @@ public class Question_input extends AppCompatActivity {
     static Bitmap imgBit;
     ImageView edit_img;
     EditText edit_answer;
-    TextView edit_num;
 
     EditText edit_categoryN;
 
@@ -47,9 +46,6 @@ public class Question_input extends AppCompatActivity {
 
     ImageView plus;
     ImageView insert;
-
-    Intent intent;
-    String categoryname;
 
     int num = 1;
 
@@ -109,8 +105,6 @@ public class Question_input extends AppCompatActivity {
                         Intent intent = new Intent(Intent.ACTION_PICK);
                         intent.setType("image/*");
                         startActivityForResult(intent, 1);
-
-
                     }
                 });
 

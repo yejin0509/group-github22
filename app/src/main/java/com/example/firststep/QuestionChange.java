@@ -44,6 +44,8 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
     ArrayList<ItemCheck> categoryList;
     QuestionChangeAdapter adapter;
     ImageView deleteButton;
+    ImageView imageView4;
+    ImageView checkButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,16 +75,14 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
 
 
         // db파일 내보내기, 받아오기
-        ImageView imageView4 = findViewById(R.id.imageView4);
+        imageView4 = findViewById(R.id.imageView4);
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 권한ID를 가져옵니다
-                int permission = ContextCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                int permission = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
-                int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.READ_EXTERNAL_STORAGE);
+                int permission2 = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
 
                 // 권한이 열려있는지 확인
                 if (permission == PackageManager.PERMISSION_DENIED || permission2 == PackageManager.PERMISSION_DENIED) {
@@ -95,83 +95,13 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
                     }
                     return;
                 }
-
-
-                // 다이얼로그 띄우고 문제 양식 입력받음
-                AlertDialog.Builder builder = new AlertDialog.Builder(QuestionChange.this);
-                View view2 = LayoutInflater.from(QuestionChange.this).inflate(R.layout.question_change_dialog, null, false);
-                builder.setView(view2);
-
-                Button importDB = view2.findViewById(R.id.importDB);
-                Button exportDB = view2.findViewById(R.id.exportDB);
-
-                final AlertDialog dialog = builder.create();
-
-                importDB.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //외부 저장소(External Storage)가 마운트(인식) 되었을 때 동작
-                        //getExternalStorageState() 함수를 통해 외부저장장치가 Mount 되어 있는지를 확인
-                        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-                            File sd = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "Suppormer" + ".db");
-                            File data = Environment.getDataDirectory();
-
-                            try{
-                                File restoreDB = new File(data, "/data/com.example.firststep/databases/Suppormer.db");
-
-                                FileChannel src = new FileInputStream(sd).getChannel();
-                                FileChannel dst = new FileOutputStream(restoreDB).getChannel();
-                                dst.transferFrom(src, 0, src.size());
-
-                                src.close();
-                                dst.close();
-
-                            } catch (IOException e){
-                                e.printStackTrace();
-                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
-                        }
-                        dialog.dismiss();
-                    }
-                });
-
-                exportDB.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-                            File sd = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "Suppormer" + ".db");
-                            File data = Environment.getDataDirectory();
-
-                            try{
-                                File restoreDB = new File(data, "/data/com.example.firststep/databases/Suppormer.db");
-
-                                FileChannel src = new FileInputStream(restoreDB).getChannel();
-                                FileChannel dst = new FileOutputStream(sd).getChannel();
-                                dst.transferFrom(src, 0, src.size());
-
-                                src.close();
-                                dst.close();
-
-                            } catch (IOException e){
-                                e.printStackTrace();
-                                Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_SHORT).show();
-                        }
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
             }
         });
 
+
+
         deleteButton = findViewById(R.id.imageView);
+        checkButton = findViewById(R.id.imageView5);
 
         recyclerList();
         adapter.setOnItemClickListener(this);
