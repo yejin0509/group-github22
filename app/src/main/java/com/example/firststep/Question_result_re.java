@@ -34,7 +34,7 @@ public class Question_result_re extends AppCompatActivity implements Question_re
     RecyclerView recyclerView;
 
     ArrayList<UserClass> questionList = new ArrayList<UserClass>();     //결과 리스트
-    ArrayList<SuppormerClass> ImageList = new ArrayList<SuppormerClass>();                                 //이미지 리스트
+    ArrayList<SuppormerClass> ImageList = new ArrayList<SuppormerClass>();    //이미지 리스트
 
     ArrayList<String> numList = new ArrayList<String>();
     int test = 0;
@@ -51,7 +51,7 @@ public class Question_result_re extends AppCompatActivity implements Question_re
         dbSuppormer = new DBSuppormer(Question_result_re.this);
         dbUser = new DBUser(Question_result_re.this);
 
-
+        //완료 버튼
         Button mainButton = (Button) findViewById(R.id.clearbutton);
         mainButton.setOnClickListener(new View.OnClickListener() {
 
@@ -61,6 +61,8 @@ public class Question_result_re extends AppCompatActivity implements Question_re
                 startActivity(intent);
             }
         });
+
+        //문제 풀이에 대한 결과 가져옴
         Intent intent = getIntent();
 
         getCategoryName = intent.getStringExtra("CategoryName");

@@ -20,9 +20,10 @@ import java.util.ArrayList;
 public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_re_2.MyViewHolder> { //viewHolder 은 layout 객체에 존재하는 view를 보관하는 holder 객체
 
     ArrayList<UserClass> questionList = new ArrayList<UserClass>();     //결과 리스트
-    ArrayList<SuppormerClass> ImageList = new ArrayList<SuppormerClass>();
+    ArrayList<SuppormerClass> ImageList = new ArrayList<SuppormerClass>();   //이미지 리스트
     ArrayList<String> numList = new ArrayList<String>();
     int test = 0;
+
     String answer, user_answer, ch1, ch2, ch3;
 
     interface OnItemClickListener{
@@ -43,21 +44,22 @@ public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_r
         public MyViewHolder(View v){
             super(v);
             Number = v.findViewById(R.id.number);
+
             choice1 = v.findViewById(R.id.choice1);
             choice2 = v.findViewById(R.id.choice2);
             choice3 = v.findViewById(R.id.choice3);
+
             image = v.findViewById(R.id.imageView1);
+
             wrong = v.findViewById(R.id.qResultWrong2);
             correct = v.findViewById(R.id.qResultCorrect2);
+
             q1 = v.findViewById(R.id.tv_Q1);
             q2 = v.findViewById(R.id.tv_Q2);
             q3 = v.findViewById(R.id.tv_Q3);
 
-
             wrong.setVisibility(View.INVISIBLE);
             correct.setVisibility(View.INVISIBLE);
-
-
         }
     }
 
@@ -80,16 +82,19 @@ public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_r
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
         holder.Number.setText(questionList.get(Integer.parseInt(numList.get(test))).getQNumber());
+
         holder.choice1.setText(questionList.get(Integer.parseInt(numList.get(test))).getChoice1());
         holder.choice2.setText(questionList.get(Integer.parseInt(numList.get(test))).getChoice2());
         holder.choice3.setText(questionList.get(Integer.parseInt(numList.get(test))).getChoice3());
 
+        //변수에 정답, 유저답, 선택지 저장
         answer = questionList.get(Integer.parseInt(numList.get(test))).getResultA();
         user_answer = questionList.get(Integer.parseInt(numList.get(test))).getUserA();
         ch1 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
         ch2 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
         ch3 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
 
+        //정답에 맞는 이미지 출력
         for(int i = 0; i < ImageList.size(); ++i){
             String ImageAnswer = ImageList.get(Integer.parseInt(numList.get(i))).getAnswer();
             if (ImageAnswer.equals(answer)) {
@@ -97,6 +102,7 @@ public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_r
             }
         }
 
+        //정답, 오답 체크
         if(answer.equals(user_answer)){
             holder.correct.setVisibility(View.VISIBLE);
 
@@ -170,6 +176,7 @@ public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_r
         test += 1;
     }
 
+    //리스트 출력되는 수
     @Override
     public int getItemCount() { // 전체 item 개수 반환
         return questionList.size();
