@@ -237,11 +237,20 @@ public class Question extends AppCompatActivity{
                     ch3.setTextColor(Color.parseColor("#757575"));
 
                 } else {
-                    Log.i("문제끝", String.valueOf(n));
-                    Intent intent = new Intent(getApplicationContext(), Question_result.class);
-                    intent.putExtra("CategoryName",(String)categoryname);
-                    intent.putExtra("date",sdate);
-                    startActivity(intent);
+
+
+                    Button qNext = (Button) findViewById(R.id.qNext);
+                    qNext.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View view) {
+                            Log.i("문제끝", String.valueOf(n));
+                            Intent intent = new Intent(getApplicationContext(), Question_result_re.class);
+                            intent.putExtra("CategoryName",(String)categoryname);
+                            intent.putExtra("date",sdate);
+                            startActivity(intent);
+                        }
+                    });
                 }
 
             }

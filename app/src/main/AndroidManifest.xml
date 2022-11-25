@@ -107,6 +107,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".Question_result_re"
+            >
+        </activity>
     </application>
 
 </manifest>
