@@ -91,8 +91,8 @@ public class Question_result_re_2 extends RecyclerView.Adapter<Question_result_r
         answer = questionList.get(Integer.parseInt(numList.get(test))).getResultA();
         user_answer = questionList.get(Integer.parseInt(numList.get(test))).getUserA();
         ch1 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
-        ch2 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
-        ch3 = questionList.get(Integer.parseInt(numList.get(test))).getChoice1();
+        ch2 = questionList.get(Integer.parseInt(numList.get(test))).getChoice2();
+        ch3 = questionList.get(Integer.parseInt(numList.get(test))).getChoice3();
 
         //정답에 맞는 이미지 출력
         for(int i = 0; i < ImageList.size(); ++i){
