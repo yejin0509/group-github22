@@ -13,120 +13,107 @@
 
 
     <RelativeLayout
-        android:layout_width="361dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="60px">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <!--정답 오답 사진-->
 
-        <ImageView
-            android:id="@+id/qResultCorrect2"
-            android:layout_width="122dp"
-            android:layout_height="176dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="538dp"
-            app:srcCompat="@drawable/correctlarge" />
-
+        <!--문제 번호-->
         <TextView
             android:id="@+id/number"
-            android:layout_width="123dp"
-            android:layout_height="111dp"
-
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/qResultWrong2"
+            android:layout_alignTop="@+id/qResultWrong2"
+            android:layout_alignRight="@+id/qResultWrong2"
+            android:layout_alignBottom="@+id/qResultWrong2"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:letterSpacing="0.04"
             android:text="1."
-            android:textSize="30sp"
-            tools:ignore="UnknownIdInLayout" />
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/qResultWrong2"
-            android:layout_width="124dp"
-            android:layout_height="117dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginBottom="538dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:srcCompat="@drawable/closelarge" />
 
         <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="320dp"
+            android:id="@+id/qResultCorrect2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="194dp"
-            android:layout_marginEnd="9dp"
-            android:src="@drawable/pancil" />
-
-        <RelativeLayout
-            android:layout_width="338dp"
-            android:layout_height="252dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="0dp">
-            <!--문제-->
-
-            <TextView
-                android:id="@+id/tv_Q1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="50dp"
-                android:text="1."
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/choice1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="50dp"
-                android:text="웃다"
-                android:textColor="#757575"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tv_Q2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="100dp"
-                android:text="2."
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/choice2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="100dp"
-                android:text="울다"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tv_Q3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="120dp"
-                android:layout_marginTop="150dp"
-                android:text="3."
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/choice3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="155dp"
-                android:layout_marginTop="150dp"
-                android:text="화내다"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/correctlarge" />
     </RelativeLayout>
     <!--문제 사진-->
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="194dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/pancil" />
     <!--문제-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="227dp"
+        android:layout_marginTop="360dp">
+        <!--문제-->
+
+        <TextView
+            android:id="@+id/tv_Q1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="50dp"
+            android:text="1."
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/choice1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="50dp"
+            android:text="웃다"
+            android:textColor="#757575"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_Q2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="100dp"
+            android:text="2."
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/choice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="100dp"
+            android:text="울다"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_Q3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="150dp"
+            android:text="3."
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/choice3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="155dp"
+            android:layout_marginTop="150dp"
+            android:text="화내다"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>
