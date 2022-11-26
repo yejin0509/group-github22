@@ -41,7 +41,6 @@ public class Question_input_2Adapter extends RecyclerView.Adapter<Question_input
 
             image = v.findViewById(R.id.view_img);
             answerText = v.findViewById(R.id.view_answer);
-            dateText = v.findViewById(R.id.view_writeDate);
 
             v.setOnCreateContextMenuListener(this);
         }

@@ -103,7 +103,7 @@ public class Question_input extends AppCompatActivity {
                     @Override
                     public void onClick(View view){
                         Intent intent = new Intent(Intent.ACTION_PICK);
-                        intent.setType("image/*");
+                        intent.setType("*/*");
                         startActivityForResult(intent, 1);
                     }
                 });

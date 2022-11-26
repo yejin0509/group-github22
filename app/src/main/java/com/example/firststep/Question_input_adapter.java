@@ -36,14 +36,12 @@ public class Question_input_adapter extends RecyclerView.Adapter<Question_input_
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener{
         ImageView image;
         TextView answerText;
-        TextView dateText;
 
         public MyViewHolder(View v){
             super(v);
 
             image = v.findViewById(R.id.view_img);
             answerText = v.findViewById(R.id.view_answer);
-            dateText = v.findViewById(R.id.view_writeDate);
 
             v.setOnCreateContextMenuListener(this);
         }
@@ -143,7 +141,6 @@ public class Question_input_adapter extends RecyclerView.Adapter<Question_input_
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
         holder.image.setImageBitmap((Bitmap) itemArrayList.get(position).getImage());
         holder.answerText.setText(itemArrayList.get(position).getAnswer());
-        holder.dateText.setText(itemArrayList.get(position).getWriteDate());
     }
 
 

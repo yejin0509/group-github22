@@ -1,6 +1,7 @@
 package com.example.firststep;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.util.Log;
@@ -26,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -42,7 +46,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAdapter.MyViewHolder> {
-    private static final int READ_REQUEST_CODE = 1;
+    private static final int REQ_CODE = 123;
     //viewHolder 은 layout 객체에 존재하는 view를 보관하는 holder 객체
 
     public interface OnItemClickListener{
@@ -65,12 +69,10 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
     DBSuppormer dbSuppormer;
     CheckBox checkBox2;
     myDBHelper myDBHelper;
-    SQLiteDatabase db;
 
     ImageView deleteButton;
     ImageView uploadButton;
     ImageView checkButton;
-
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView categoryText;
@@ -116,12 +118,10 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
                 categoryList.get(position).setIsCheck(true);
                 checkPosition.add(String.valueOf(position));
                 checkCategoryN.add(categoryList.get(position).getCategoryN());
-                Log.i("리스트 추가", String.valueOf(checkCategoryN));
             } else {
                 categoryList.get(position).setIsCheck(false);
                 checkPosition.remove(String.valueOf(position));
                 checkCategoryN.remove(categoryList.get(position).getCategoryN());
-                Log.i("리스트 감소", String.valueOf(checkCategoryN));
             }
         });
 
@@ -163,7 +163,8 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
                 importDB.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        importDB();
+                        questionChange.selectDB();
+
                         dialog.dismiss();
 
                     }
@@ -240,23 +241,14 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
 
     }
-
-    public void importDB(){
+    public void importDB(String fileName){
         //외부 저장소(External Storage)가 마운트(인식) 되었을 때 동작
         //getExternalStorageState() 함수를 통해 외부저장장치가 Mount 되어 있는지를 확인
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            File sd = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "Suppormer2" + ".db");
+            File sd = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), fileName);
             File data = Environment.getDataDirectory();
 
             try{
-
-//                Intent intent = new Intent();
-//                intent.addCategory(Intent.ACTION_GET_CONTENT);
-//                intent.setType("*/*" );
-//
-//                questionChange.startActivityForResult(intent, READ_REQUEST_CODE);
-
-
                 File restoreDB = new File(data, "/data/com.example.firststep/databases/Suppormer2.db");
 
                 FileChannel src = new FileInputStream(sd).getChannel();
@@ -275,11 +267,12 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
                 for(int i = 0; i<itemarraylist.size();i++){
                     dbSuppormer.Insert(itemarraylist.get(i).getCategoryN(),itemarraylist.get(i).getImage(),itemarraylist.get(i).getAnswer(),itemarraylist.get(i).getWriteDate());
+
                 }
 
-                Intent intent = new Intent(mContext, QuestionChange.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mContext.startActivity(intent);
+                Intent intent2 = new Intent(mContext, QuestionChange.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mContext.startActivity(intent2);
 
                 restoreDB.delete();
 
@@ -295,7 +288,7 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
     public void exportDB(){
         if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            File sd = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath(), "Suppormer2" + ".db");
+            String sd = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
             File data = Environment.getDataDirectory();
             File data2 = Environment.getDataDirectory();
 
@@ -316,29 +309,24 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
                 if(checkCategoryN.size() == 1){
                     deleteCategory.append(" ' " + checkCategoryN.get(0) + " ' ");
-                    Log.i("하나만 있을경우", String.valueOf(deleteCategory));
                 } else {
                     deleteCategory.append(" '" + checkCategoryN.get(0) + "' ");
                     for(int i = 1; i < checkCategoryN.size(); i++){
                         deleteCategory.append( ", '" +checkCategoryN.get(i) + "' ");
-
-                        Log.i("확인",String.valueOf(deleteCategory));
                     }
                 }
 
-                myDBHelper.deleteValue(String.valueOf(deleteCategory));
+                myDBHelper.deleteValue2(String.valueOf(deleteCategory));
 
-                List list = myDBHelper.getResultCategoryN();
-
-                for(int i = 0; i<list.size(); i++){
-                    Log.i("삭제 후 카테고리 확인",String.valueOf(i) + String.valueOf(list.get(i)));
-                }
+                List list = myDBHelper.getResultCategoryN2();
 
                 for(int i =0; i<categoryList.size(); i++){
                     categoryList.get(i).setShowCheck("View.GONE");
                     categoryList.get(i).setIsCheck(false);
                     notifyItemChanged(i);
                 }
+
+                File sd2 = new File(sd,checkCategoryN.get(0)+".db");
 
                 checkCategoryN.clear();
                 deleteCategory.setLength(0);
@@ -348,7 +336,7 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
                 uploadButton.setVisibility(View.VISIBLE);
 
                 FileChannel src2 = new FileInputStream(restoreDB2).getChannel();
-                FileChannel dst2 = new FileOutputStream(sd).getChannel();
+                FileChannel dst2 = new FileOutputStream(sd2).getChannel();
                 dst2.transferFrom(src2, 0, src2.size());
 
                 src2.close();
@@ -383,13 +371,13 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
             onCreate(db);
         }
 
-        public void deleteValue(String categoryN){
+        public void deleteValue2(String categoryN){
             SQLiteDatabase mDB=getWritableDatabase();
             mDB.execSQL("DELETE FROM Qtable WHERE categoryN NOT IN (" +categoryN+ ") ;");
 
             mDB.close();
         }
-        public List getResultCategoryN(){
+        public List getResultCategoryN2(){
             // 읽기가 가능하게 DB 열기
             SQLiteDatabase db = getWritableDatabase();
             List mList = new ArrayList();
@@ -397,7 +385,6 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
             Cursor cursor = db.rawQuery("SELECT DISTINCT categoryN FROM Qtable ", null);
             while(cursor.moveToNext()){
 
-                Log.i("카테고리 ", cursor.getString(0));
                 mList.add(0,cursor.getString(0));
 
             }
@@ -422,22 +409,6 @@ public class QuestionChangeAdapter extends RecyclerView.Adapter<QuestionChangeAd
 
 
     }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("확인", String.valueOf(requestCode));
-        switch (requestCode) {
-            case 1:
-                Log.i("uri확인", "ghkr");
-                if (resultCode == Activity.RESULT_OK) {
-                    Uri uri = data.getData();
-                    String indexName = String.valueOf(OpenableColumns.DISPLAY_NAME);
-                    Log.i("uri확인", String.valueOf(uri));
-                    Log.i("이름확인", indexName);
-                }
-                break;
-        }
-    }
-
 
     @Override
     public int getItemCount() { // 전체 item 개수 반환

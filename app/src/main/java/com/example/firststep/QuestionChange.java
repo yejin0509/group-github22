@@ -8,15 +8,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +51,10 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
     ImageView deleteButton;
     ImageView imageView4;
     ImageView checkButton;
+    String fileName;
+    TextView textfileName;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +111,7 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
 
         deleteButton = findViewById(R.id.imageView);
         checkButton = findViewById(R.id.imageView5);
+        textfileName = findViewById(R.id.fileName);
 
         recyclerList();
         adapter.setOnItemClickListener(this);
@@ -131,6 +141,45 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
         Intent intent = new Intent(getApplicationContext(), Question_input_2.class);
         intent.putExtra("해당 카테고리 이름", category);
         startActivity(intent);
+    }
+
+    public void selectDB(){
+        Intent intent = new Intent().setType("*/*")
+                        .setAction(Intent.ACTION_OPEN_DOCUMENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        startActivityForResult(intent, 1);
+    }
+
+    // 이미지 갤러리에서 가져오기
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    Uri uri = data.getData();
+                    fileName = getFileNameFromUri(uri);
+                    adapter.importDB(fileName);
+                }
+                break;
+        }
+    }
+
+    // URI에서 파일명 얻기
+    @SuppressLint("Range")
+    private String getFileNameFromUri(Uri uri) {
+        String fileName = "";
+
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+        }
+        cursor.close();
+
+        return fileName;
     }
 
     // 권한 체크 이후로직
