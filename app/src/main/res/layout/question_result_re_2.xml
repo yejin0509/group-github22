@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/containDialog"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:padding="2dp"
+    android:layout_margin="10dp"
+    android:padding="0dp"
     app:cardBackgroundColor="#00FFFFFF"
     app:cardCornerRadius="10dp"
-    app:strokeWidth="3dp">
+    app:strokeWidth="3dp"
+    android:outlineProvider="none">
 
 
     <RelativeLayout
