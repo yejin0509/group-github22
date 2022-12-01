@@ -6,108 +6,217 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
     android:layout_marginTop="10dp">
+
 <!--    <Button-->
 <!--        android:id="@+id/button4"-->
 <!--        android:layout_width="350dp"-->
 <!--        android:layout_height="99dp"-->
 <!--        android:background="@drawable/button_back_suppormer"-->
-<!--        android:shadowColor="#AE6D35"-->
-<!--        android:text="분야 : 감정     점수 : 95점     날짜 : 22.10.13"-->
-<!--        android:textColor="#472D1C"-->
-<!--        android:textSize="17sp"-->
-<!--        android:textStyle="bold" />-->
-
-    <LinearLayout
+<!--         />-->
+    <RelativeLayout
         android:layout_width="350dp"
         android:layout_height="99dp"
-        android:background="@drawable/button_back_suppormer"
-        android:orientation="horizontal"
-        android:padding="60px">
+        android:background="@drawable/button_back_suppormer">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:translationZ="10dp">
         <TextView
             android:id="@+id/tv1"
-            android:layout_width="38dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:gravity="center"
+            android:layout_marginLeft="36dp"
             android:text="분야 : "
             android:textColor="#472D1C"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/score_categoryN"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
             android:gravity="left"
             android:text="문제분야"
             android:textColor="#472D1C"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:translationZ="10dp">
 
         <TextView
-            android:id="@+id/tv2"
-            android:layout_width="38dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginLeft="8sp"
-            android:gravity="center"
-            android:text="점수 : "
-            android:textColor="#472D1C"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/score"
-            android:layout_width="19dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="center"
-            android:text="15"
-            android:textColor="#472D1C"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/slash"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="left"
-            android:text="/"
-            android:textColor="#472D1C"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-        <TextView
-            android:id="@+id/count"
-            android:layout_width="19dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:gravity="center"
-            android:text="20"
-            android:textColor="#472D1C"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-        <TextView
             android:id="@+id/tv3"
-            android:layout_width="38dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="13sp"
-            android:layout_marginTop="18dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="55dp"
             android:gravity="center"
             android:text="날짜 : "
             android:textColor="#472D1C"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
         <TextView
             android:id="@+id/score_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="55dp"
             android:gravity="center"
             android:text="xx.xx.xx"
             android:textColor="#472D1C"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:translationZ="10dp">
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="200dp"
+        android:gravity="center"
+        android:text="점수 : "
+        android:textColor="#E37d4e"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="#E37d4e"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="left"
+        android:text="/"
+        android:textColor="#E37d4e"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="#E37d4e"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>
+
+
+    <!--    <LinearLayout-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="99dp"-->
+<!--        android:background="@drawable/button_back_suppormer"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="60px">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv1"-->
+<!--            android:layout_width="38dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="분야 : "-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/score_categoryN"-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="left"-->
+<!--            android:text="문제분야"-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv2"-->
+<!--            android:layout_width="38dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:layout_marginLeft="8sp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="점수 : "-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/score"-->
+<!--            android:layout_width="19dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="15"-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/slash"-->
+<!--            android:layout_width="5dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="left"-->
+<!--            android:text="/"-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/count"-->
+<!--            android:layout_width="19dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="20"-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tv3"-->
+<!--            android:layout_width="38dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="13sp"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="날짜 : "-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/score_date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="18dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="xx.xx.xx"-->
+<!--            android:textColor="#472D1C"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textStyle="bold" />-->
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
