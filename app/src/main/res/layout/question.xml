@@ -8,30 +8,34 @@
     android:orientation="vertical"
     tools:context=".Question">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="#F6C74B">
         <!--        화살표 버튼-->
+        <!--문제 분야-->
         <Button
             android:id="@+id/button2"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/baseline_arrow_back_black_24dp" />
-        <!--문제 분야-->
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/baseline_arrow_back_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="135dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"
             android:text="감정"
-            android:textSize="30sp" />
-    </LinearLayout>
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout >
 
     <!-- 문제 번호   -->
     <RelativeLayout
@@ -68,7 +72,7 @@
             android:gravity="center"
             android:letterSpacing="0.04"
             android:text="1."
-            android:textSize="30sp" />
+            android:textSize="40sp" />
     </RelativeLayout>
 <!--    <TextView-->
 <!--        android:id="@+id/textView4"-->
@@ -83,7 +87,7 @@
     <ImageView
         android:id="@+id/qimage"
         android:layout_width="match_parent"
-        android:layout_height="194dp"
+        android:layout_height="250dp"
         android:src="@drawable/pancil" />
 
     <RelativeLayout
@@ -95,10 +99,10 @@
             android:id="@+id/tv_Q1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_marginLeft="120dp"
+            android:layout_marginTop="50dp"
             android:text="1."
-            android:textSize="20sp"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/choice1"
@@ -108,16 +112,16 @@
             android:layout_marginTop="50dp"
             android:text="웃다"
             android:textColor="#757575"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_Q2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:layout_marginLeft="120dp"
+            android:layout_marginTop="100dp"
             android:text="2."
-            android:textSize="20sp"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/choice2"
@@ -126,16 +130,16 @@
             android:layout_marginStart="155dp"
             android:layout_marginTop="100dp"
             android:text="울다"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/tv_Q3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
             android:layout_marginLeft="120dp"
+            android:layout_marginTop="150dp"
             android:text="3."
-            android:textSize="20sp"/>
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/choice3"
@@ -144,19 +148,18 @@
             android:layout_marginStart="155dp"
             android:layout_marginTop="150dp"
             android:text="화내다"
-            android:textSize="20sp" />
+            android:textSize="30sp" />
 
     </RelativeLayout>
 
     <android.widget.Button
         android:id="@+id/qNext"
-        android:layout_width="35dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="40dp"
         android:layout_marginStart="330dp"
         android:layout_marginLeft="3dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:background="@drawable/arrow_2" />
-
 
 
 </LinearLayout>

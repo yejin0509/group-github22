@@ -12,24 +12,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#E37d4e">
+        android:background="#E37d4e"
+        android:gravity="center_vertical">
         <!--       뒤로가기 화살표 버튼-->
         <Button
             android:id="@+id/arrowbutton"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="30dp"
             android:background="@drawable/arrow" />
         <!--상단-->
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="135dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginLeft="125dp"
             android:text="결과"
-            android:textSize="30sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -68,7 +67,7 @@
                     android:gravity="center"
                     android:letterSpacing="0.04"
                     android:text="1."
-                    android:textSize="30sp" />
+                    android:textSize="40sp" />
             </RelativeLayout>
             <!--문제 사진-->
             <ImageView
@@ -77,45 +76,41 @@
                 android:layout_height="194dp"
                 android:src="@drawable/pancil" />
             <!--문제-->
+
             <EditText
                 android:id="@+id/Number1_1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="9"
-                android:inputType="number"
-                android:drawableEnd="@drawable/close"
-                android:textColor="#ff0000"
-                android:text="1. 웃다"
-                android:textSize="20sp"
                 android:layout_marginTop="70dp"
-                android:layout_marginStart="95dp"
-                />
+                android:drawableEnd="@drawable/close"
+                android:inputType="number"
+                android:text="1. 웃다"
+                android:textColor="#ff0000"
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Number1_2"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="25dp"
                 android:ems="9"
                 android:inputType="number"
                 android:text="2. 울다"
-                android:textSize="20sp"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="95dp"
-                />
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Number1_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="25dp"
+                android:drawableEnd="@drawable/correct"
                 android:ems="9"
                 android:inputType="number"
-                android:drawableEnd="@drawable/correct"
-                android:textColor="#568A35"
                 android:text="3. 화내다"
-                android:textSize="20sp"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="95dp"
-                />
+                android:textColor="#568A35"
+                android:textSize="30sp" />
             <!--2번 시작-->
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -143,7 +138,7 @@
                     android:gravity="center"
                     android:letterSpacing="0.04"
                     android:text="2."
-                    android:textSize="30sp"/>
+                    android:textSize="40sp" />
 
             </RelativeLayout>
 
@@ -159,13 +154,12 @@
                 android:id="@+id/Number2_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="95dp"
+                android:layout_marginTop="70dp"
                 android:ems="9"
                 android:inputType="number"
                 android:text="1. 웃다"
-                android:textSize="20sp"
-                android:layout_marginTop="70dp"
-                android:layout_marginStart="95dp"
-                />
+                android:textSize="30sp" />
 
             <EditText
                 android:id="@+id/Number2_2"

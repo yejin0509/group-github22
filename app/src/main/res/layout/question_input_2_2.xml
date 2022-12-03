@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/view_img"
-                android:layout_width="212dp"
-                android:layout_height="100dp"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
                 android:layout_weight="1"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -44,14 +44,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="답변 : "
-                android:textSize="18sp" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/view_answer"
                 android:layout_width="188dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="18sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 

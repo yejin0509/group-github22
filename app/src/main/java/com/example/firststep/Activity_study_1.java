@@ -86,7 +86,7 @@ public class Activity_study_1 extends AppCompatActivity {
                     imageView2.setImageBitmap(itemArraylist.get(n).getImage());
                 } else {
                     Log.i("문제끝", String.valueOf(n));
-                    Intent intent = new Intent(getApplicationContext(), Class_list.class);
+                    Intent intent = new Intent(getApplicationContext(), QuestionLast.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }

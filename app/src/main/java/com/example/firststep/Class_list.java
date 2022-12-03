@@ -27,7 +27,6 @@ public class Class_list extends AppCompatActivity implements Class_listAdapter.O
 
         ImageView backButton = (ImageView) findViewById(R.id.imageView2);
         backButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Second_selection.class);

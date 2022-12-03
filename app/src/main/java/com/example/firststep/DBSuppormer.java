@@ -102,6 +102,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             itemArrayList.add(new SuppormerClass(cursor.getString(1),cursor.getInt(0),bm,cursor.getString(3),cursor.getString(4)));
 
         }
+        cursor.close();
         return itemArrayList;
     }
 
@@ -137,6 +138,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(0,cursor.getString(0));
 
         }
+        cursor.close();
         return mList;
     }
 
@@ -156,6 +158,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             Log.i("Int ",String.valueOf(num));
 
         }
+        cursor.close();
         return num;
     }
 
@@ -171,7 +174,9 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(0,cursor.getString(0));
 
         }
+        cursor.close();
         return mList;
+
     }
 
 
@@ -193,6 +198,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(4,cursor.getString(4));
 
         }
+        cursor.close();
         return mList;
     }
 
@@ -211,6 +217,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(4,cursor.getString(4));
 
         }
+        cursor.close();
         return mList;
     }
 
@@ -229,6 +236,7 @@ public class DBSuppormer extends SQLiteOpenHelper {
             mList.add(4,cursor.getString(4));
 
         }
+        cursor.close();
         return mList;
     }
 
