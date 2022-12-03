@@ -75,7 +75,7 @@ public class DBUser extends SQLiteOpenHelper {
     public ArrayList<ScoreResult> getResult(){
         ArrayList<ScoreResult> scoreL=new ArrayList<>();
         SQLiteDatabase db=getReadableDatabase();
-        Cursor cursor=db.rawQuery("SELECT categoryN, count(userA) as correct, writeDate FROM UserTable WHERE userA=ResultA GROUP by writeDate;",null);
+        Cursor cursor=db.rawQuery("SELECT categoryN,count(CASE WHEN userA=ResultA then 1 END) as correct, writeDate FROM UserTable GROUP by writeDate;",null);
         if(cursor.getCount()!=0){
             while(cursor.moveToNext()){
                 String title=cursor.getString(cursor.getColumnIndex("categoryN"));

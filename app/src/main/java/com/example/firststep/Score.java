@@ -66,7 +66,7 @@ public class Score extends AppCompatActivity implements Score_ListAdapter.OnItem
         }
 
 
-            adapter=new Score_ListAdapter(this,scoreL,countL );
+            adapter=new Score_ListAdapter(scoreL,countL,this );
             recyclerView.setHasFixedSize(true);
             recyclerView.setAdapter(adapter);
 

@@ -30,7 +30,7 @@ public class Score_ListAdapter extends RecyclerView.Adapter<Score_ListAdapter.Vi
         mListener = listener;
     }
 
-    public Score_ListAdapter(Score score, ArrayList<ScoreResult> scoreL,ArrayList<String> countL){
+    public Score_ListAdapter(ArrayList<ScoreResult> scoreL,ArrayList<String> countL,Score score){
         this.scoreL=scoreL;
         this.countL=countL;
         this.mContext=score;
@@ -65,7 +65,7 @@ public class Score_ListAdapter extends RecyclerView.Adapter<Score_ListAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull Score_ListAdapter.ViewHolder holder, int position) {
         holder.title.setText(scoreL.get(position).getTitle());
-        holder.score.setText(String.valueOf(scoreL.get(position).getCorrect()));
+        holder.score.setText(String.valueOf(scoreL. get(position).getCorrect()));
         holder.count.setText(String.valueOf(countL.get(position)));
 
         categoryN = String.valueOf(scoreL.get(position).getTitle());
@@ -74,7 +74,7 @@ public class Score_ListAdapter extends RecyclerView.Adapter<Score_ListAdapter.Vi
         resultDate= date1.substring(0,9);
         holder.date.setText(resultDate);
         Log.i("카테고리 이름", categoryN);
-        Log.i("날짜ㅏ", resultDate);
+        Log.i("날짜", resultDate);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
