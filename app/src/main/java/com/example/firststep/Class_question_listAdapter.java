@@ -49,7 +49,8 @@ public class Class_question_listAdapter extends RecyclerView.Adapter<Class_quest
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) { // 스크롤 등으로 특정 position의 data를 새롭게 표시해야할때마다 호출.
+
         holder.categoryText.setText(String.valueOf(categoryList.get(position)));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

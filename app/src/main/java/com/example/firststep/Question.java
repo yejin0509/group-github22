@@ -38,10 +38,11 @@ public class Question extends AppCompatActivity{
     ArrayList<String> answerList;
     ArrayList<SuppormerClass> itemArraylist;
 
-    //중복 방지를 위함.
+    //중복 방지를 위함..
     ArrayList<SuppormerClass> questionlist = new ArrayList<SuppormerClass>();
     ArrayList<String> numList = new ArrayList<String>();
     int test = 0;
+
 
     Intent intent;
     String categoryname, user_answer;

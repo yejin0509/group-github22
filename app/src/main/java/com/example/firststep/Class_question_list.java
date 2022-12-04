@@ -94,7 +94,7 @@ public class Class_question_list extends AppCompatActivity implements Class_ques
 
 
 
-        //랜덤으로 정답 외에 선택지 List로 저장
+        //랜덤으로 정답 외에 선택지 List로 저장.
         for(int i = 0; i< answer.size(); i++) {
             String string_answer = String.valueOf(answer.get(i));       //string_answer 정답
             Log.i("string_answer", string_answer);
