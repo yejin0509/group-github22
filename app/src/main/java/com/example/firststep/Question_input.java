@@ -102,8 +102,9 @@ public class Question_input extends AppCompatActivity {
                 edit_img.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view){
-                        Intent intent = new Intent(Intent.ACTION_PICK);
-                        intent.setType("*/*");
+                        Intent intent = new Intent().setType("*/*")
+                                .setAction(Intent.ACTION_OPEN_DOCUMENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
                         startActivityForResult(intent, 1);
                     }
                 });

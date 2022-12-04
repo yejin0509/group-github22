@@ -70,7 +70,7 @@ public class Question_input_adapter extends RecyclerView.Adapter<Question_input_
                         dbSuppormer = new DBSuppormer(mContext);
 
 
-                        dialogInput.setText("수정");
+                        dialogInput.setText("등록");
 
                         String categoryN = itemArrayList.get(getAdapterPosition()).getCategoryN();
                         edit_answer.setText(itemArrayList.get(getAdapterPosition()).getAnswer());

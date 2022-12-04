@@ -111,7 +111,6 @@ public class QuestionChange extends AppCompatActivity implements QuestionChangeA
 
         deleteButton = findViewById(R.id.imageView);
         checkButton = findViewById(R.id.imageView5);
-        textfileName = findViewById(R.id.fileName);
 
         recyclerList();
         adapter.setOnItemClickListener(this);
